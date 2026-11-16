@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 56" fill="none">
+  <!-- Funky Enamel Shield Badge -->
+  <g class="logo-shield-group">
+    <!-- Hard Drop Shadow for Shield -->
+    <path d="M6 5 H46 C47.5 5 48.5 6 48.5 7.5 V32 C48.5 42 39 50.5 26 50.5 C13 50.5 3.5 42 3.5 32 V7.5 C3.5 6 4.5 5 6 5 Z" fill="#0A1230" transform="translate(2.5, 2.5)"/>
+    <!-- Main Cobalt Shield -->
+    <path d="M6 5 H46 C47.5 5 48.5 6 48.5 7.5 V32 C48.5 42 39 50.5 26 50.5 C13 50.5 3.5 42 3.5 32 V7.5 C3.5 6 4.5 5 6 5 Z" fill="#1856F3" stroke="#0A1230" stroke-width="2.6" stroke-linejoin="round"/>
+    
+    <!-- Mini Funky Star Sparkle at Top Right -->
+    <path d="M45 4 L46.2 7 L49.2 8 L46.2 9 L45 12 L43.8 9 L40.8 8 L43.8 7 Z" fill="#C8FF3E" stroke="#0A1230" stroke-width="1.2"/>
+
+    <!-- Graduation Cap Crown / Dome (Underneath) -->
+    <path d="M17 26 C17 26 19 36 26 36 C33 36 35 26 35 26" fill="#FFFDF5" stroke="#0A1230" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M19 28 C21 33 31 33 33 28" stroke="#C8FF3E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+    <!-- Book Pages / Layered Rim (Electric Lime Accent) -->
+    <path d="M16 23.5 L34 16 L38 22.5 L20 30 Z" fill="#C8FF3E" stroke="#0A1230" stroke-width="2.2" stroke-linejoin="round"/>
+    <line x1="23" y1="26.5" x2="37" y2="20.5" stroke="#FFFDF5" stroke-width="1.4" stroke-linecap="round"/>
+
+    <!-- Mortarboard Diamond (Warm Cream / Crisp White) -->
+    <polygon points="26,11 41,18 26,25 11,18" fill="#FFFDF5" stroke="#0A1230" stroke-width="2.4" stroke-linejoin="round"/>
+
+    <!-- Book Fold / Center Ridge Line on Cap -->
+    <path d="M26 11 L23.5 19" stroke="#0A1230" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Gold Center Button -->
+    <circle cx="26" cy="18" r="2.2" fill="#FFDC33" stroke="#0A1230" stroke-width="1.5"/>
+
+    <!-- Gold Tassel Ribbon & Fringe -->
+    <path d="M26 18 C19 18.5 14 22 14 26" stroke="#0A1230" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M26 18 C19 18.5 14 22 14 26" stroke="#FFDC33" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <!-- Tassel Fringe Brush -->
+    <path d="M12.5 26 H15.5 L17 33.5 L11 33.5 Z" fill="#FFDC33" stroke="#0A1230" stroke-width="1.8" stroke-linejoin="round"/>
+    <line x1="14" y1="28" x2="14" y2="32" stroke="#0A1230" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Funky Brand Typography: 'university' & 'yatra' -->
+  <text x="60" y="24" font-family="'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" font-weight="800" letter-spacing="-0.03em" fill="#0A1230">university</text>
+  <text x="60" y="47" font-family="'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="25" font-weight="900" letter-spacing="-0.035em" fill="#1856F3">yatra</text>
+  
+  <!-- Trademark Badge -->
+  <circle cx="132" y="36" r="4.5" fill="#C8FF3E" stroke="#0A1230" stroke-width="1.2"/>
+  <text x="132" y="38.5" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="900" fill="#0A1230">TM</text>
+</svg>
