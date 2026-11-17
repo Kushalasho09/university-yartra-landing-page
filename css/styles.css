@@ -341,14 +341,28 @@ header {
   flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .nav {
+    justify-content: center;
+    height: 64px;
+  }
+  .nav-actions {
+    display: none !important;
+  }
+  .logo {
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 480px) {
   .nav {
-    height: 62px;
+    justify-content: center;
+    height: 60px;
   }
   .logo-capsule {
     height: 38px;
-    padding: 0 11px;
-    gap: 6px;
+    padding: 0 14px;
+    gap: 7px;
     box-shadow: 2px 2px 0 #0A1230;
   }
   .logo-capsule-icon {
@@ -356,13 +370,10 @@ header {
     height: 20px;
   }
   .logo-capsule-text {
-    font-size: 0.92rem;
+    font-size: 0.94rem;
   }
-  .nav-cta-capsule {
-    height: 38px;
-    padding: 0 13px;
-    font-size: 0.82rem;
-    box-shadow: 2px 2px 0 #0A1230;
+  .nav-actions {
+    display: none !important;
   }
 }
 
