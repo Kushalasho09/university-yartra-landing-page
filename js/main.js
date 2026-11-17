@@ -596,10 +596,237 @@
     }
   }
 
+  /* ========================================================
+     SECTION 2 — STUDY PATHWAYS MOBILE CAROUSEL & AUTO-SWIPE
+     ======================================================== */
+  function initPathwaysSlider() {
+    const grid = document.getElementById('pathwaysGrid');
+    const sliderWrap = document.querySelector('.path-slider-wrap');
+    const tabs = document.querySelectorAll('.path-tab-btn');
+    const dots = document.querySelectorAll('.path-dot');
+    const slides = document.querySelectorAll('.path-slide');
+    if (!grid || slides.length < 2) return;
+
+    let currentIndex = 0;
+    let autoTimer = null;
+    const INTERVAL_MS = 5000; // 5 seconds loop
+
+    function goToSlide(index, restartTimer = true) {
+      if (window.innerWidth > 768) {
+        grid.style.transform = '';
+        return;
+      }
+
+      currentIndex = (index + slides.length) % slides.length;
+      grid.style.transform = 'translateX(-' + (currentIndex * 50) + '%)';
+
+      // Update Tab Buttons
+      tabs.forEach((tab, i) => {
+        const isActive = i === currentIndex;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      // Update Indicator Dots
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === currentIndex);
+      });
+
+      // Update Slide State
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === currentIndex);
+      });
+
+      if (restartTimer) {
+        startTimer();
+      }
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1, false);
+    }
+
+    function startTimer() {
+      stopTimer();
+      if (window.innerWidth <= 768) {
+        autoTimer = setInterval(nextSlide, INTERVAL_MS);
+      }
+    }
+
+    function stopTimer() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    // Tab Button Clicks
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = parseInt(tab.getAttribute('data-index'), 10) || 0;
+        goToSlide(idx);
+      });
+    });
+
+    // Dot Button Clicks
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index'), 10) || 0;
+        goToSlide(idx);
+      });
+    });
+
+    // Touch Swipe Support
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    const gestureTarget = sliderWrap || grid;
+
+    gestureTarget.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+      stopTimer();
+    }, { passive: true });
+
+    gestureTarget.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+        if (diffX < 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+      } else {
+        startTimer();
+      }
+    }, { passive: true });
+
+    // Handle screen resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        stopTimer();
+        grid.style.transform = '';
+      } else {
+        goToSlide(currentIndex, true);
+      }
+    });
+
+    // Initial setup on load
+    if (window.innerWidth <= 768) {
+      goToSlide(0, true);
+    }
+  }
+
+  /* ==========================================================================
+     TESTIMONIALS INTERACTIVE STUDENT JOURNEYS CONTROLLER
+     ========================================================================== */
+  function initTestimonialsStories() {
+    const stories = {
+      unnati: [
+        {k:'Starting point',t:'Could studying in Canada be financially possible?',d:'Unnati wanted to pursue a Master’s in Canada, but funding was a major concern. We reviewed her academic profile, finances and goals to understand the options.',s:'✦',img:'assets/images/consultation-desk.webp',alt:'One-to-one study abroad counselling consultation'},
+        {k:'Education loan',t:'Her education loan was approved in 24 hours.',d:'We identified a suitable financing option and guided her application. The loan was approved within 24 hours with basic documentation; no additional supporting documents were required in her case.',s:'₹',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85',alt:'Financial planning and paperwork'},
+        {k:'University admission',t:'She secured admission to Trent University.',d:'Unnati received an offer for the Master’s in Instrumental Chemical Analysis at Trent University, Ontario.',s:'⌂',img:'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1200&q=85',alt:'University campus'},
+        {k:'Scholarship',t:'A university scholarship followed.',d:'After securing admission, Unnati also received a scholarship from Trent University, adding financial support to her studies.',s:'★',img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85',alt:'University graduation celebration'},
+        {k:'Co-op selection',t:'Selected for a Health Canada co-op.',d:'Unnati was selected for a co-op opportunity at Health Canada, Government of Canada, giving her the opportunity to gain professional exposure in her field.',s:'＋',img:'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85',alt:'Professional laboratory environment'}
+      ],
+      tauheed: [
+        {k:'Academic eligibility',t:'Could a three-year degree lead to a Master’s?',d:'Tauheed wanted to study in Canada, but his three-year Bachelor’s degree made university selection more complex. We reviewed his qualification and researched suitable pathways.',s:'◎',img:'assets/images/consultation-desk.webp',alt:'Academic counselling consultation'},
+        {k:'University selection',t:'We identified a pathway at Algoma University.',d:'After evaluating his academic background, we found a Master’s pathway where his existing qualification could be considered for admission.',s:'⌂',img:'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1200&q=85',alt:'University campus'},
+        {k:'Education loan',t:'₹45 lakh sanctioned without a property mortgage.',d:'We assessed Tauheed’s financial profile and guided the loan application. His ₹45 lakh education loan was sanctioned without property mortgage collateral.',s:'₹',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85',alt:'Financial documents and planning'},
+        {k:'Location planning',t:'The university location was part of the decision.',d:'Alongside academic fit, we considered Sault Ste. Marie’s regional context, local economic conditions and potential PNP pathways before finalising Algoma University.',s:'⌖',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85',alt:'Regional landscape in Canada'},
+        {k:'Next step',t:'His admission and financing were in place.',d:'With a suitable Master’s admission and his education loan sanctioned, Tauheed was able to begin his academic journey in Canada.',s:'✓',img:'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=85',alt:'Canadian city skyline'}
+      ]
+    };
+
+    const section = document.querySelector('#testimonials, #uy-testimonials');
+    if (!section) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    section.querySelectorAll('[data-story]').forEach(card => {
+      const key = card.dataset.story, steps = stories[key];
+      if (!steps) return;
+      let index = 0, timer = null;
+      const image = card.querySelector('[data-image]'),
+            title = card.querySelector('[data-title]'),
+            desc = card.querySelector('[data-description]'),
+            kicker = card.querySelector('[data-kicker]'),
+            symbol = card.querySelector('[data-symbol]'),
+            count = card.querySelector('[data-count]'),
+            dots = card.querySelector('[data-dots]');
+
+      if (dots && dots.children.length === 0) {
+        steps.forEach((step, i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'uy-dot';
+          b.setAttribute('aria-label', `Go to milestone ${i + 1}`);
+          b.addEventListener('click', () => { show(i); restart(); });
+          dots.appendChild(b);
+        });
+      }
+
+      function show(next) {
+        index = (next + steps.length) % steps.length;
+        const s = steps[index];
+        if (image) { image.src = s.img; image.alt = s.alt; }
+        if (title) title.textContent = s.t;
+        if (desc) desc.textContent = s.d;
+        if (kicker) kicker.textContent = `${String(index + 1).padStart(2, '0')} · ${s.k}`;
+        if (symbol) symbol.textContent = s.s;
+        if (count) count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(steps.length).padStart(2, '0')}`;
+        if (dots) {
+          [...dots.children].forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
+        }
+      }
+
+      function stop() {
+        if (timer) {
+          window.clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      function start() {
+        if (reduceMotion || document.hidden || card.matches(':hover') || card.contains(document.activeElement)) return;
+        stop();
+        timer = window.setInterval(() => show(index + 1), 5600);
+      }
+
+      function restart() {
+        stop();
+        start();
+      }
+
+      const prevBtn = card.querySelector('[data-prev]');
+      const nextBtn = card.querySelector('[data-next]');
+      if (prevBtn) prevBtn.addEventListener('click', () => { show(index - 1); restart(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { show(index + 1); restart(); });
+
+      card.addEventListener('mouseenter', stop);
+      card.addEventListener('mouseleave', start);
+      card.addEventListener('focusin', stop);
+      card.addEventListener('focusout', e => {
+        if (!card.contains(e.relatedTarget)) start();
+      });
+
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+      show(0);
+      start();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initWizardController();
     initBottomEnquiry();
     initStickerSlapFooter();
+    initPathwaysSlider();
+    initTestimonialsStories();
   });
 
 })();
