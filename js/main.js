@@ -11,70 +11,119 @@
   const $ = id => document.getElementById(id);
   const wa = m => 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(m);
 
-  /* Verified Official Cost Data (INR Lakhs/yr) */
-  const D = {
-    'Germany': {
-      flag: '🇩🇪',
-      name: 'Germany',
-      t: { "Bachelor's": [0.5, 3], "Master's": [0.5, 4], "MBA": [6, 15] },
-      l: [9, 13], // Blocked Account: €11,904/yr ≈ ₹10.7L
-      other: [1.5, 3], // APS ₹18k, Visa, Flights
-      directGuide: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
-      ftGuide: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
-    },
+  /* 100% Verified Logic Sheet Data extracted directly from official DOCX files */
+  const DOCX_DATA = {
     'Canada': {
       flag: '🇨🇦',
       name: 'Canada',
-      t: { "Bachelor's": [12, 22], "Master's": [12, 24], "MBA": [18, 35] },
-      l: [11, 16], // GIC Requirement: CAD 20,635 ≈ ₹12.8L
-      other: [2, 4], // Biometrics, Medical, Study permit, Flights
-      directGuide: 'assets/pdfs/Canada_Country_Guide_University_Yatra_v4.pdf',
-      ftGuide: 'assets/pdfs/University-Yatra-Canada-Fast-Track-Guide.pdf'
+      currency: 'CAD',
+      fx: 'CAD 1 = ₹65',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹91.5 Lakhs', ftAvailable: true, ftTotal: '≈ ₹66.3 Lakhs', ftSavings: '≈ ₹25.2 Lakhs' },
+        "Master's": { directTotal: '≈ ₹65.2 Lakhs', ftAvailable: true, ftTotal: '≈ ₹55.0 Lakhs', ftSavings: '≈ ₹10.2 Lakhs' },
+        "MBA": { directTotal: '≈ ₹70.4 Lakhs', ftAvailable: true, ftTotal: '≈ ₹58.0 Lakhs', ftSavings: '≈ ₹12.4 Lakhs' }
+      },
+      intake: 'September 2027 (Main) · May 2027 (Secondary)',
+      guidePdf: 'assets/pdfs/Canada_Country_Guide_University_Yatra_v4.pdf',
+      ftGuidePdf: 'assets/pdfs/University-Yatra-Canada-Fast-Track-Guide.pdf'
+    },
+    'Germany': {
+      flag: '🇩🇪',
+      name: 'Germany',
+      currency: 'EUR',
+      fx: 'EUR 1 = ₹100',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹85.6 Lakhs', ftAvailable: true, ftTotal: '≈ ₹62.3 Lakhs', ftSavings: '≈ ₹23.3 Lakhs' },
+        "Master's": { directTotal: '≈ ₹45.7 Lakhs', ftAvailable: true, ftTotal: '≈ ₹34.1 Lakhs', ftSavings: '≈ ₹11.6 Lakhs' },
+        "MBA": { directTotal: '≈ ₹49.0 Lakhs', ftAvailable: true, ftTotal: '≈ ₹37.0 Lakhs', ftSavings: '≈ ₹12.0 Lakhs' }
+      },
+      intake: 'Winter Semester (Oct 2027) · Summer (Apr 2028)',
+      guidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
+      ftGuidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
     },
     'United Kingdom': {
       flag: '🇬🇧',
       name: 'United Kingdom',
-      t: { "Bachelor's": [13, 22], "Master's": [14, 25], "MBA": [18, 35] },
-      l: [11, 17], // UKVI Maintenance: £10,827-£14,130 ≈ ₹11.8L-₹15.5L
-      other: [2.2, 4.5], // Visa £490, IHS £776/yr, TB, Flights
-      directGuide: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf',
-      ftGuide: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf'
+      currency: 'GBP',
+      fx: 'GBP 1 = ₹110',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹1.32 Cr', ftAvailable: true, ftTotal: '≈ ₹93.4 Lakhs', ftSavings: '≈ ₹38.6 Lakhs' },
+        "Master's": { directTotal: '≈ ₹69.5 Lakhs', ftAvailable: true, ftTotal: '≈ ₹41.0 Lakhs', ftSavings: '≈ ₹28.5 Lakhs' },
+        "MBA": { directTotal: '≈ ₹69.5 Lakhs', ftAvailable: true, ftTotal: '≈ ₹41.0 Lakhs', ftSavings: '≈ ₹28.5 Lakhs' }
+      },
+      intake: 'September 2027 (Main) · January 2028 (Secondary)',
+      guidePdf: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf',
+      ftGuidePdf: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf'
     },
     'Australia': {
       flag: '🇦🇺',
       name: 'Australia',
-      t: { "Bachelor's": [12, 24], "Master's": [14, 26], "MBA": [18, 34] },
-      l: [14, 18], // Govt Visa Benchmark: AUD 29,710 ≈ ₹16.6L
-      other: [2.5, 5], // Visa, OSHC, Flights
-      directGuide: 'assets/pdfs/Australia_Country_Guide_University_Yatra_v1.pdf',
-      ftGuide: 'assets/pdfs/Australia_Country_Guide_University_Yatra_v1.pdf'
+      currency: 'AUD',
+      fx: 'AUD 1 = ₹58',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹1.16 Cr', ftAvailable: true, ftTotal: '≈ ₹82.8 Lakhs', ftSavings: '≈ ₹32.9 Lakhs' },
+        "Master's": { directTotal: '≈ ₹72.0 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' },
+        "MBA": { directTotal: '≈ ₹77.8 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' }
+      },
+      intake: 'July 2027 (Main) · February 2028 (Secondary)',
+      guidePdf: 'assets/pdfs/Australia_Country_Guide_University_Yatra_v1.pdf',
+      ftGuidePdf: 'assets/pdfs/Australia_Country_Guide_University_Yatra_v1.pdf'
     },
     'USA': {
       flag: '🇺🇸',
       name: 'USA',
-      t: { "Bachelor's": [15, 32], "Master's": [16, 35], "MBA": [22, 50] },
-      l: [12, 19], // Living: $1,000-$2,500/mo ≈ ₹10.5L-₹20.5L
-      other: [2.5, 5], // SEVIS, DS-160, Insurance, Flights
-      directGuide: 'assets/pdfs/USA_Country_Guide_University_Yatra_v1.pdf',
-      ftGuide: 'assets/pdfs/USA_Country_Guide_University_Yatra_v1.pdf'
+      currency: 'USD',
+      fx: 'USD 1 = ₹92',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹1.56 Cr', ftAvailable: true, ftTotal: '≈ ₹1.23 Cr', ftSavings: '≈ ₹33.6 Lakhs' },
+        "Master's": { directTotal: '≈ ₹82.6 Lakhs', ftAvailable: true, ftTotal: '≈ ₹47.1 Lakhs', ftSavings: '≈ ₹35.5 Lakhs' },
+        "MBA": { directTotal: '≈ ₹86.3 Lakhs', ftAvailable: true, ftTotal: '≈ ₹49.0 Lakhs', ftSavings: '≈ ₹37.3 Lakhs' }
+      },
+      intake: 'Fall 2027 (Aug/Sept) · Spring 2028 (Jan)',
+      guidePdf: 'assets/pdfs/USA_Country_Guide_University_Yatra_v1.pdf',
+      ftGuidePdf: 'assets/pdfs/USA_Country_Guide_University_Yatra_v1.pdf'
     },
     'France': {
       flag: '🇫🇷',
       name: 'France',
-      t: { "Bachelor's": [2, 12], "Master's": [2.5, 14], "MBA": [10, 22] },
-      l: [8, 13], // Living: €700-€1,100/mo ≈ ₹7.5L-₹12L
-      other: [1.5, 3.5], // Campus France, Visa, Flights
-      directGuide: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
-      ftGuide: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
+      currency: 'EUR',
+      fx: 'EUR 1 = ₹100',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹73.1 Lakhs', ftAvailable: true, ftTotal: '≈ ₹54.0 Lakhs', ftSavings: '≈ ₹19.1 Lakhs' },
+        "Master's": { directTotal: '≈ ₹55.0 Lakhs', ftAvailable: true, ftTotal: '≈ ₹32.9 Lakhs', ftSavings: '≈ ₹22.1 Lakhs' },
+        "MBA": { directTotal: '≈ ₹61.0 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' }
+      },
+      intake: 'September 2027 (Main) · January 2028 (Secondary)',
+      guidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
+      ftGuidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
     },
     'Ireland': {
       flag: '🇮🇪',
       name: 'Ireland',
-      t: { "Bachelor's": [9, 20], "Master's": [11, 22], "MBA": [14, 28] },
-      l: [10, 15], // Living: €1,000-€1,500/mo ≈ ₹10.8L-₹15L
-      other: [2, 4], // Visa, Flights
-      directGuide: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf',
-      ftGuide: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf'
+      currency: 'EUR',
+      fx: 'EUR 1 = ₹100',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹75.0 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' },
+        "Master's": { directTotal: '≈ ₹36.7 Lakhs', ftAvailable: true, ftTotal: '≈ ₹35.0 Lakhs', ftSavings: '≈ ₹1.7 Lakhs' },
+        "MBA": { directTotal: '≈ ₹28.4 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' }
+      },
+      intake: 'September 2027 (Main) · January 2028 (Secondary)',
+      guidePdf: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf',
+      ftGuidePdf: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf'
+    },
+    'Finland': {
+      flag: '🇫🇮',
+      name: 'Finland',
+      currency: 'EUR',
+      fx: 'EUR 1 = ₹100',
+      levels: {
+        "Bachelor's": { directTotal: '≈ ₹77.6 Lakhs', ftAvailable: true, ftTotal: '≈ ₹57.1 Lakhs', ftSavings: '≈ ₹20.5 Lakhs' },
+        "Master's": { directTotal: '≈ ₹49.1 Lakhs', ftAvailable: true, ftTotal: '≈ ₹29.6 Lakhs', ftSavings: '≈ ₹19.5 Lakhs' },
+        "MBA": { directTotal: '≈ ₹53.1 Lakhs', ftAvailable: true, ftTotal: '≈ ₹31.6 Lakhs', ftSavings: '≈ ₹21.5 Lakhs' }
+      },
+      intake: 'Autumn 2027 (Aug/Sept) · Spring 2028 (Jan)',
+      guidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
+      ftGuidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
     }
   };
 
@@ -85,26 +134,37 @@
     'Australia': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#00008B"/><path d="M0 0H16V16H0Z" fill="#012169"/><path d="M0 0L16 16M16 0L0 16" stroke="#fff" stroke-width="2"/><path d="M0 0L16 16M16 0L0 16" stroke="#C8102E" stroke-width="1.2"/><path d="M8 0V16M0 8H16" stroke="#fff" stroke-width="3"/><path d="M8 0V16M0 8H16" stroke="#C8102E" stroke-width="1.8"/><circle cx="24" cy="8" r="1.5" fill="#fff"/><circle cx="27" cy="14" r="1.5" fill="#fff"/><circle cx="22" cy="20" r="1.5" fill="#fff"/><circle cx="25" cy="25" r="1.5" fill="#fff"/><circle cx="8" cy="24" r="2.5" fill="#fff"/></svg>',
     'USA': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 3H32M0 8H32M0 13H32M0 18H32M0 23H32M0 28H32" stroke="#B22234" stroke-width="2.6"/><rect width="15" height="16" fill="#3C3B6E"/><circle cx="4" cy="4" r="1" fill="#fff"/><circle cx="11" cy="4" r="1" fill="#fff"/><circle cx="7.5" cy="8" r="1" fill="#fff"/><circle cx="4" cy="12" r="1" fill="#fff"/><circle cx="11" cy="12" r="1" fill="#fff"/></svg>',
     'France': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H11V32H0Z" fill="#002654"/><path d="M11 0H21V32H11Z" fill="#FFFFFF"/><path d="M21 0H32V32H21Z" fill="#ED2939"/></svg>',
-    'Ireland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H11V32H0Z" fill="#169B62"/><path d="M11 0H21V32H11Z" fill="#FFFFFF"/><path d="M21 0H32V32H21Z" fill="#FF883E"/></svg>'
+    'Ireland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H11V32H0Z" fill="#169B62"/><path d="M11 0H21V32H11Z" fill="#FFFFFF"/><path d="M21 0H32V32H21Z" fill="#FF883E"/></svg>',
+    'Finland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 13H32V19H0Z" fill="#003580"/><path d="M10 0H16V32H10Z" fill="#003580"/></svg>'
   };
-
-  function fmtLakh(n) {
-    return '₹' + (Number.isInteger(n) ? n : n.toFixed(1)) + 'L';
-  }
-
-  function rngLakh(arr) {
-    return fmtLakh(arr[0]) + ' – ' + fmtLakh(arr[1]);
-  }
 
   /* Current Active State */
   const S = {
-    country: 'Canada',
-    level: "Master's",
     pathway: 'fast-track',
-    lifestyle: 'mid'
+    level: "Master's",
+    country: 'Canada',
+    timeline: 'fall-2027'
   };
 
   let currentStep = 1;
+
+  function resetResultGate() {
+    const costsTable = $('lockedCostsTable');
+    if (costsTable) costsTable.classList.remove('unlocked');
+    const quickForm = $('calcQuickLeadForm');
+    if (quickForm) {
+      quickForm.style.display = '';
+      quickForm.reset();
+    }
+    const quickSuccess = $('calcQuickSuccess');
+    if (quickSuccess) quickSuccess.style.display = 'none';
+    const btn = $('calcQuickSubmitBtn');
+    if (btn) {
+      btn.disabled = false;
+      const cName = S.country || 'Canada';
+      btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${cName} Cost Guide</span>`;
+    }
+  }
 
   function updateStepView() {
     // Show/hide panes
@@ -122,6 +182,9 @@
     const nextBtn = $('wizNextBtn');
 
     if (currentStep <= 4) {
+      // Clear unlocked / downloaded state when going back to previous steps
+      resetResultGate();
+
       if (progressFill) progressFill.style.width = (currentStep * 25) + '%';
       if (stepIndicator) stepIndicator.textContent = 'Step ' + currentStep + ' of 4';
       if (prevBtn) prevBtn.style.visibility = (currentStep === 1) ? 'hidden' : 'visible';
@@ -138,33 +201,15 @@
         prevBtn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Edit Choices';
       }
       if (nextBtn) {
-        nextBtn.style.display = 'none'; // Replaced by in-card actions
+        nextBtn.style.display = 'none'; // Replaced by in-card lead form
       }
       calculateResults();
     }
   }
 
   function calculateResults() {
-    const data = D[S.country] || D['Canada'];
-    const tBase = data.t[S.level] || data.t["Master's"];
-    const lBase = data.l;
-
-    // Lifestyle multiplier
-    const lifeMult = { lean: 0.9, mid: 1.0, plus: 1.2 }[S.lifestyle] || 1.0;
-    const lCalc = [lBase[0] * lifeMult, lBase[1] * lifeMult];
-
-    // Pathway factor
-    let tCalc = [tBase[0], tBase[1]];
-    let pathwayLabel = 'Direct';
-    let isFT = false;
-
-    if (S.pathway === 'fast-track') {
-      tCalc = [tBase[0] * 0.55, tBase[1] * 0.55];
-      pathwayLabel = 'Fast Track (Yr 1)';
-      isFT = true;
-    }
-
-    const totalRange = [tCalc[0] + lCalc[0], tCalc[1] + lCalc[1]];
+    const cData = DOCX_DATA[S.country] || DOCX_DATA['Canada'];
+    const lvlData = cData.levels[S.level] || cData.levels["Master's"];
 
     // DOM Updates
     const flagEl = $('rCountryFlag');
@@ -179,61 +224,14 @@
       quickSubmitBtn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${S.country} Cost Guide</span>`;
     }
 
-    // Actual Calculated Figures (Blurred Behind Padlock)
-    const blurTuition = $('blurTuition');
-    const blurLiving = $('blurLiving');
-    const blurOther = $('blurOther');
+    // Exact Verified Figures (Blurred Behind Padlock until Lead submit)
+    const blurDirect = $('blurDirectTotal');
+    const blurFt = $('blurFtTotal');
+    const blurSav = $('blurSavings');
 
-    if (blurTuition) blurTuition.textContent = rngLakh(tCalc);
-    if (blurLiving) blurLiving.textContent = rngLakh(lCalc);
-    if (blurOther) blurOther.textContent = rngLakh(data.other);
-
-    // Safely update legacy elements if present in DOM
-    const rRange = $('rRange');
-    const rTuition = $('rTuition');
-    const rLiving = $('rLiving');
-    const rOther = $('rOther');
-    const ftBadge = $('ftSavingsBadge');
-    const calcBtn = $('calcDownloadPdfBtn');
-    const countrySelect = $('calc_country_select');
-
-    if (rRange) rRange.textContent = rngLakh(totalRange);
-    if (rTuition) rTuition.textContent = rngLakh(tCalc);
-    if (rLiving) rLiving.textContent = rngLakh(lCalc);
-    if (rOther) rOther.textContent = rngLakh(data.other);
-
-    // Sync Country Dropdown in form
-    if (countrySelect && countrySelect.value !== S.country) {
-      countrySelect.value = S.country;
-    }
-
-    // Fast Track Savings Badge
-    if (ftBadge) {
-      if (isFT) {
-        const savedMin = tBase[0] * 0.45;
-        const savedMax = tBase[1] * 0.45;
-        ftBadge.style.display = 'block';
-        ftBadge.innerHTML = `<i class="fa-solid fa-bolt"></i> Fast Track saves approx. <strong>${fmtLakh(savedMin)} – ${fmtLakh(savedMax)}</strong> on Year 1 tuition!`;
-      } else {
-        ftBadge.style.display = 'none';
-      }
-    }
-
-    // PDF Download Button
-    if (calcBtn) {
-      calcBtn.innerHTML = `<i class="fa-solid fa-file-arrow-down"></i> Download Free ${S.country} Guide (PDF) ↓`;
-      calcBtn.onclick = function () {
-        const guidePdf = isFT ? data.ftGuide : data.directGuide;
-        if (guidePdf) {
-          const a = document.createElement('a');
-          a.href = guidePdf;
-          a.setAttribute('download', '');
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }
-      };
-    }
+    if (blurDirect) blurDirect.textContent = lvlData.directTotal;
+    if (blurFt) blurFt.textContent = lvlData.ftTotal;
+    if (blurSav) blurSav.textContent = lvlData.ftSavings;
   }
 
   function initWizardController() {
@@ -252,30 +250,9 @@
         const val = btn.dataset.v;
         if (key && val) {
           S[key] = val;
-          // If country changed in step 1, sync with dropdown
-          if (key === 'country') {
-            const countrySelect = $('calc_country_select');
-            if (countrySelect) countrySelect.value = val;
-          }
         }
       });
     });
-
-    // Country Dropdown in Form (Two-way sync!)
-    const countrySelect = $('calc_country_select');
-    if (countrySelect) {
-      countrySelect.addEventListener('change', function () {
-        S.country = this.value;
-        // Update Step 1 country buttons
-        const step1Grid = $('wizStep1');
-        if (step1Grid) {
-          step1Grid.querySelectorAll('.wiz-opt').forEach(b => {
-            b.classList.toggle('on', b.dataset.v === S.country);
-          });
-        }
-        calculateResults();
-      });
-    }
 
     // Previous Button
     const prevBtn = $('wizPrevBtn');
@@ -310,7 +287,7 @@
         const phoneCode = String(fd.get('phone_code') || '+91').trim();
         const name = String(fd.get('name') || '').trim();
         const email = String(fd.get('email') || '').trim();
-        const country = S.country || String(fd.get('country') || 'Canada').trim();
+        const country = S.country || 'Canada';
 
         if (phone.length < 7 || phone.length > 12) {
           alert('Please enter a valid mobile number');
@@ -323,9 +300,9 @@
           btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Preparing ${country} Cost Guide...</span>`;
         }
 
-        const data = D[country] || D['Canada'];
+        const cData = DOCX_DATA[country] || DOCX_DATA['Canada'];
         const isFT = S.pathway === 'fast-track';
-        const guidePdf = isFT ? data.ftGuide : data.directGuide;
+        const guidePdf = isFT ? cData.ftGuidePdf : cData.guidePdf;
 
         setTimeout(() => {
           // Unblur and reveal the personalized figures upon unlock!
@@ -347,9 +324,20 @@
 
           // Open WhatsApp with detailed message
           const emailNote = email ? ` (Email: ${email})` : '';
-          const msg = `Hi University Yatra, my name is ${name}. I am looking for ${S.level} programmes in ${country} (${S.pathway}). I just unlocked the official cost guide${emailNote}. Please connect with me at ${phoneCode} ${phone}.`;
+          const msg = `Hi University Yatra, my name is ${name}. I am looking for ${S.level} programmes in ${country} (Route: ${S.pathway}, Target Intake: ${S.timeline}). I just unlocked the official ${country} cost guide${emailNote}. Please connect with me at ${phoneCode} ${phone}.`;
           window.open(wa(msg), '_blank');
         }, 400);
+      });
+    }
+
+    // Reset button inside success view
+    const resetBtn = $('calcResetBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        currentStep = 1;
+        updateStepView();
+        const calcEl = $('calculator');
+        if (calcEl) calcEl.scrollIntoView({ behavior: 'smooth' });
       });
     }
 
@@ -365,7 +353,8 @@
       'australia': 'Australia',
       'usa': 'USA',
       'france': 'France',
-      'ireland': 'Ireland'
+      'ireland': 'Ireland',
+      'finland': 'Finland'
     };
     const cName = map[String(cKey).toLowerCase()] || 'Canada';
     const btn = document.querySelector(`.wiz-opt[data-k="country"][data-v="${cName}"]`);
