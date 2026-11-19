@@ -950,25 +950,33 @@
 
         <div class="inside">
           <div class="ic">
-            <div class="n">01</div>
+            <div class="ic-num-wrap">
+              <img src="assets/images/post-study-01-permit.png" alt="01" class="ic-num-img" width="925" height="514" loading="lazy" />
+            </div>
             <h3>Post-Study Work Permits</h3>
             <p>Access legal post-study work rights (such as UK Graduate Visa, Canada PGWP, or Australia PSW) to gain
               international work experience.</p>
           </div>
           <div class="ic">
-            <div class="n">02</div>
+            <div class="ic-num-wrap">
+              <img src="assets/images/post-study-02-employment.png" alt="02" class="ic-num-img" width="880" height="518" loading="lazy" />
+            </div>
             <h3>Graduate Employment Opportunities</h3>
             <p>Participate in campus recruitment drives, industry internships, and professional networking with
               multinational employers.</p>
           </div>
           <div class="ic">
-            <div class="n">03</div>
+            <div class="ic-num-wrap">
+              <img src="assets/images/post-study-03-further-studies.png" alt="03" class="ic-num-img" width="897" height="742" loading="lazy" />
+            </div>
             <h3>Further Studies &amp; Specialisation</h3>
             <p>Seamlessly transition from undergraduate degrees into Master's or specialized doctoral research programs
               worldwide.</p>
           </div>
           <div class="ic">
-            <div class="n">04</div>
+            <div class="ic-num-wrap">
+              <img src="assets/images/post-study-04-immigration.png" alt="04" class="ic-num-img" width="867" height="462" loading="lazy" />
+            </div>
             <h3>Country-Specific Work &amp; Immigration</h3>
             <p>Explore legal long-term settlement, skilled worker sponsorship, and residency routes tailored to
               high-demand skills.</p>
@@ -1150,8 +1158,8 @@
               <input class="fi" name="email" id="eq_email" type="email" placeholder="Email Address" required
                 autocomplete="email" />
 
-              <button class="btn btn-primary btn-block" type="submit" id="enquirySubmitBtn">
-                Find My Study Options <i class="fa-solid fa-arrow-right"></i>
+              <button class="btn-cta-img-wrap" type="submit" id="enquirySubmitBtn" aria-label="Find My Study Options">
+                <img src="assets/images/cta-button-find-options.png" alt="Find My Study Options" class="btn-cta-img" width="1228" height="311" />
               </button>
             </form>
 
@@ -1262,9 +1270,12 @@
       <!-- Wordmark Stage with Interactive Slapped Stickers -->
       <div class="ssf-stage">
         <div class="ssf-stage-in">
-          <!-- Stealth Ambient Motion Video (Seamlessly Blended Behind Stickers) -->
+          <!-- Stealth Ambient Motion Video (Seamless Dual-Buffer Crossfading Loop) -->
           <div class="ssf-video-backdrop" aria-hidden="true">
-            <video class="ssf-video-media" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
+            <video id="ssfVideoA" class="ssf-video-media is-active" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
+              <source src="assets/footer-video.mp4" type="video/mp4">
+            </video>
+            <video id="ssfVideoB" class="ssf-video-media" muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
               <source src="assets/footer-video.mp4" type="video/mp4">
             </video>
             <div class="ssf-video-eraser" aria-hidden="true"></div>

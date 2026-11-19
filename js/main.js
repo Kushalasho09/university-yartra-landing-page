@@ -583,6 +583,81 @@
         }
       });
     }
+
+    // 8. Seamless Dual-Buffer Video Looper (Eliminates flicker & loop pause)
+    initSeamlessFooterVideo();
+  }
+
+  /* ========================================================
+     STEALTH AMBIENT FOOTER VIDEO — SEAMLESS DUAL BUFFER LOOP
+     Eliminates native browser loop-stall & black-frame flicker
+     ======================================================== */
+  function initSeamlessFooterVideo() {
+    const vidA = document.getElementById('ssfVideoA');
+    const vidB = document.getElementById('ssfVideoB');
+    if (!vidA || !vidB) return;
+
+    let isAActive = true;
+    let isTransitioning = false;
+    const CROSSFADE_OFFSET = 0.6; // Start crossfade 0.6s before video ends
+
+    // Start playback safely with user gesture fallback for mobile
+    const startPlay = () => {
+      vidA.play().catch(() => {});
+    };
+    startPlay();
+    document.addEventListener('touchstart', startPlay, { once: true, passive: true });
+    document.addEventListener('click', startPlay, { once: true });
+
+    // Monitor time of currently active video
+    function checkCrossfade(activeVid, incomingVid) {
+      if (isTransitioning) return;
+      if (!activeVid.duration || isNaN(activeVid.duration)) return;
+
+      const timeLeft = activeVid.duration - activeVid.currentTime;
+      if (timeLeft <= CROSSFADE_OFFSET && timeLeft > 0) {
+        isTransitioning = true;
+
+        // Cue and play incoming video
+        incomingVid.currentTime = 0;
+        incomingVid.play().then(() => {
+          incomingVid.classList.add('is-active');
+          activeVid.classList.remove('is-active');
+
+          setTimeout(() => {
+            isAActive = !isAActive;
+            isTransitioning = false;
+          }, 650);
+        }).catch(() => {
+          isTransitioning = false;
+        });
+      }
+    }
+
+    vidA.addEventListener('timeupdate', () => {
+      if (isAActive) checkCrossfade(vidA, vidB);
+    });
+
+    vidB.addEventListener('timeupdate', () => {
+      if (!isAActive) checkCrossfade(vidB, vidA);
+    });
+
+    // Battery & CPU optimization: pause when off-screen
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (isAActive) vidA.play().catch(() => {});
+            else vidB.play().catch(() => {});
+          } else {
+            vidA.pause();
+            vidB.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+      const footer = document.querySelector('.ssf');
+      if (footer) observer.observe(footer);
+    }
   }
 
   /* ========================================================
