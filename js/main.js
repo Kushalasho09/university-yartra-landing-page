@@ -97,20 +97,6 @@
       guidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
       ftGuidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
     },
-    'Ireland': {
-      flag: '🇮🇪',
-      name: 'Ireland',
-      currency: 'EUR',
-      fx: 'EUR 1 = ₹100',
-      levels: {
-        "Bachelor's": { directTotal: '≈ ₹75.0 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' },
-        "Master's": { directTotal: '≈ ₹36.7 Lakhs', ftAvailable: true, ftTotal: '≈ ₹35.0 Lakhs', ftSavings: '≈ ₹1.7 Lakhs' },
-        "MBA": { directTotal: '≈ ₹28.4 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' }
-      },
-      intake: 'September 2027 (Main) · January 2028 (Secondary)',
-      guidePdf: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf',
-      ftGuidePdf: 'assets/pdfs/UK_Country_Guide_University_Yatra_v1.pdf'
-    },
     'Finland': {
       flag: '🇫🇮',
       name: 'Finland',
@@ -134,7 +120,6 @@
     'Australia': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#00008B"/><path d="M0 0H16V16H0Z" fill="#012169"/><path d="M0 0L16 16M16 0L0 16" stroke="#fff" stroke-width="2"/><path d="M0 0L16 16M16 0L0 16" stroke="#C8102E" stroke-width="1.2"/><path d="M8 0V16M0 8H16" stroke="#fff" stroke-width="3"/><path d="M8 0V16M0 8H16" stroke="#C8102E" stroke-width="1.8"/><circle cx="24" cy="8" r="1.5" fill="#fff"/><circle cx="27" cy="14" r="1.5" fill="#fff"/><circle cx="22" cy="20" r="1.5" fill="#fff"/><circle cx="25" cy="25" r="1.5" fill="#fff"/><circle cx="8" cy="24" r="2.5" fill="#fff"/></svg>',
     'USA': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 3H32M0 8H32M0 13H32M0 18H32M0 23H32M0 28H32" stroke="#B22234" stroke-width="2.6"/><rect width="15" height="16" fill="#3C3B6E"/><circle cx="4" cy="4" r="1" fill="#fff"/><circle cx="11" cy="4" r="1" fill="#fff"/><circle cx="7.5" cy="8" r="1" fill="#fff"/><circle cx="4" cy="12" r="1" fill="#fff"/><circle cx="11" cy="12" r="1" fill="#fff"/></svg>',
     'France': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H11V32H0Z" fill="#002654"/><path d="M11 0H21V32H11Z" fill="#FFFFFF"/><path d="M21 0H32V32H21Z" fill="#ED2939"/></svg>',
-    'Ireland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H11V32H0Z" fill="#169B62"/><path d="M11 0H21V32H11Z" fill="#FFFFFF"/><path d="M21 0H32V32H21Z" fill="#FF883E"/></svg>',
     'Finland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 13H32V19H0Z" fill="#003580"/><path d="M10 0H16V32H10Z" fill="#003580"/></svg>'
   };
 
@@ -195,7 +180,7 @@
     } else {
       // Step 5: Result View
       if (progressFill) progressFill.style.width = '100%';
-      if (stepIndicator) stepIndicator.textContent = 'Estimated Budget Ready';
+      if (stepIndicator) stepIndicator.textContent = '';
       if (prevBtn) {
         prevBtn.style.visibility = 'visible';
         prevBtn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Edit Choices';
@@ -353,7 +338,6 @@
       'australia': 'Australia',
       'usa': 'USA',
       'france': 'France',
-      'ireland': 'Ireland',
       'finland': 'Finland'
     };
     const cName = map[String(cKey).toLowerCase()] || 'Canada';
@@ -793,16 +777,16 @@
   function initTestimonialsStories() {
     const stories = {
       unnati: [
-        {k:'Starting point',t:'Could studying in Canada be financially possible?',d:'Unnati wanted to pursue a Master’s in Canada, but funding was a major concern. We reviewed her academic profile, finances and goals to understand the options.',s:'✦',img:'assets/images/consultation-desk.webp',alt:'One-to-one study abroad counselling consultation'},
-        {k:'Education loan',t:'Her education loan was approved in 24 hours.',d:'We identified a suitable financing option and guided her application. The loan was approved within 24 hours with basic documentation; no additional supporting documents were required in her case.',s:'₹',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85',alt:'Financial planning and paperwork'},
-        {k:'University admission',t:'She secured admission to Trent University.',d:'Unnati received an offer for the Master’s in Instrumental Chemical Analysis at Trent University, Ontario.',s:'⌂',img:'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1200&q=85',alt:'University campus'},
-        {k:'Scholarship',t:'A university scholarship followed.',d:'After securing admission, Unnati also received a scholarship from Trent University, adding financial support to her studies.',s:'★',img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85',alt:'University graduation celebration'},
-        {k:'Co-op selection',t:'Selected for a Health Canada co-op.',d:'Unnati was selected for a co-op opportunity at Health Canada, Government of Canada, giving her the opportunity to gain professional exposure in her field.',s:'＋',img:'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85',alt:'Professional laboratory environment'}
+        {k:'Starting point',t:'Could studying in Canada be financially possible?',d:'Unnati wanted to pursue a Master’s in Canada, but funding was a major concern. We reviewed her academic profile, finances and goals to understand the options.',s:'✦',img:'assets/images/consultation-unnati.jpg',alt:'Unnati Parekh online counselling consultation with University Yatra'},
+        {k:'Education loan',t:'Her education loan was approved in 24 hours.',d:'We identified a suitable financing option and guided her application. The loan was approved within 24 hours with basic documentation; no additional supporting documents were required in her case.',s:'₹',img:'assets/images/unnati-milestone-02-loan.jpg?v=clean_hd1',alt:'3D clay diorama of fast 24-hour education loan approval with golden coins and certificate'},
+        {k:'University admission',t:'She secured admission to Trent University.',d:'Unnati received an offer for the Master’s in Instrumental Chemical Analysis at Trent University, Ontario.',s:'⌂',img:'assets/images/unnati-milestone-03-admission.jpg?v=clean_hd1',alt:'3D clay diorama of Canadian university campus and admission acceptance offer'},
+        {k:'Scholarship',t:'A university scholarship followed.',d:'After securing admission, Unnati also received a scholarship from Trent University, adding financial support to her studies.',s:'★',img:'assets/images/unnati-milestone-04-scholarship.jpg?v=clean_hd1',alt:'3D clay diorama of university scholarship golden trophy and merit award'},
+        {k:'Co-op selection',t:'Selected for a Health Canada co-op.',d:'Unnati was selected for a co-op opportunity at Health Canada, Government of Canada, giving her the opportunity to gain professional exposure in her field.',s:'＋',img:'assets/images/unnati-milestone-05-coop.jpg?v=clean_hd1',alt:'3D clay diorama of chemistry and health science laboratory research workbench'}
       ],
       tauheed: [
-        {k:'Academic eligibility',t:'Could a three-year degree lead to a Master’s?',d:'Tauheed wanted to study in Canada, but his three-year Bachelor’s degree made university selection more complex. We reviewed his qualification and researched suitable pathways.',s:'◎',img:'assets/images/consultation-desk.webp',alt:'Academic counselling consultation'},
+        {k:'Academic eligibility',t:'Could a three-year degree lead to a Master’s?',d:'Tauheed wanted to study in Canada, but his three-year Bachelor’s degree made university selection more complex. We reviewed his qualification and researched suitable pathways.',s:'◎',img:'assets/images/consultation-tauheed.jpg',alt:'Tauheed Khan online academic counselling consultation with University Yatra'},
         {k:'University selection',t:'We identified a pathway at Algoma University.',d:'After evaluating his academic background, we found a Master’s pathway where his existing qualification could be considered for admission.',s:'⌂',img:'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1200&q=85',alt:'University campus'},
-        {k:'Education loan',t:'₹45 lakh sanctioned without a property mortgage.',d:'We assessed Tauheed’s financial profile and guided the loan application. His ₹45 lakh education loan was sanctioned without property mortgage collateral.',s:'₹',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85',alt:'Financial documents and planning'},
+        {k:'Education loan',t:'₹45 lakh sanctioned without a property mortgage.',d:'We assessed Tauheed’s financial profile and guided the loan application. His ₹45 lakh education loan was sanctioned without property mortgage collateral.',s:'₹',img:'assets/images/tauheed-milestone-03-loan.jpg?v=clean_hd1',alt:'3D clay diorama of ₹45 lakh education loan sanction document without mortgage'},
         {k:'Location planning',t:'The university location was part of the decision.',d:'Alongside academic fit, we considered Sault Ste. Marie’s regional context, local economic conditions and potential PNP pathways before finalising Algoma University.',s:'⌖',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85',alt:'Regional landscape in Canada'},
         {k:'Next step',t:'His admission and financing were in place.',d:'With a suitable Master’s admission and his education loan sanctioned, Tauheed was able to begin his academic journey in Canada.',s:'✓',img:'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=85',alt:'Canadian city skyline'}
       ]

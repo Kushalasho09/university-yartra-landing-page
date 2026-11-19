@@ -452,17 +452,6 @@
                 <span class="c-name">France</span>
                 <span class="c-sub">Affordable Degrees</span>
               </button>
-              <button class="wiz-opt" type="button" data-k="country" data-v="Ireland">
-                <span class="flag flag-badge">
-                  <svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 0H11V32H0Z" fill="#169B62" />
-                    <path d="M11 0H21V32H11Z" fill="#FFFFFF" />
-                    <path d="M21 0H32V32H21Z" fill="#FF883E" />
-                  </svg>
-                </span>
-                <span class="c-name">Ireland</span>
-                <span class="c-sub">Tech Hub &amp; PSW</span>
-              </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="Finland">
                 <span class="flag flag-badge">
                   <svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -558,10 +547,7 @@
           <!-- STEP 5: CALCULATED RESULT & GUIDE GATE (Compact, High-Converting, Locked Pricing) -->
           <div class="wiz-step-pane" id="wizStepResult" style="display:none;">
             <div class="wiz-result-box compact-result-box">
-              <div class="wiz-result-header" style="margin-bottom:8px;">
-                <span class="result-tag" id="rTag"
-                  style="display:inline-block;font-size:0.74rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#8DB3FF;margin-bottom:2px;">Your
-                  Estimated Study Abroad Budget</span>
+              <div class="wiz-result-header" style="margin-bottom:12px;">
                 <h3 id="rTitle" class="r-title"
                   style="color:var(--lime);font-size:1.18rem;font-weight:800;margin:0;display:flex;align-items:center;gap:10px;">
                   <span id="rCountryFlag" class="flag-badge">
@@ -576,32 +562,19 @@
                   </span>
                   <span id="rTitleText">Canada · Master's Programme</span>
                 </h3>
-                <p style="font-size:0.74rem;color:#B6C3E6;margin:3px 0 0;line-height:1.35;">Indicative breakdown of
-                  tuition, living expenses and essential costs.</p>
+                <p class="r-subtitle" style="font-size:0.78rem;color:#B6C3E6;margin:4px 0 0;line-height:1.35;font-weight:500;">University-wise fees &bull; Living expenses &bull; Visa proof</p>
               </div>
 
               <!-- Locked Report Teaser Card (Reference Image 1) -->
               <div class="locked-report-card">
-                <div class="locked-report-head">
-                  <span class="locked-badge-pill">Detailed Cost Report</span>
+                <div class="locked-report-head" style="justify-content:flex-end;">
                   <span class="locked-badge-free">FREE PDF</span>
                 </div>
 
                 <div class="locked-doc-preview">
                   <div class="locked-doc-header">
                     <div class="locked-doc-icon">
-                      <svg class="sticker-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="6" y="5" width="24" height="26" rx="3" fill="#FFFDF5" stroke="#0A1230"
-                          stroke-width="2.2" />
-                        <path d="M6 5H12V31H6Z" fill="#C8FF3E" stroke="#0A1230" stroke-width="2" />
-                        <line x1="16" y1="11" x2="25" y2="11" stroke="#0A1230" stroke-width="2"
-                          stroke-linecap="round" />
-                        <line x1="16" y1="16" x2="25" y2="16" stroke="#0A1230" stroke-width="2"
-                          stroke-linecap="round" />
-                        <line x1="16" y1="21" x2="22" y2="21" stroke="#0A1230" stroke-width="2"
-                          stroke-linecap="round" />
-                        <circle cx="21" cy="25" r="2" fill="#FFDC33" stroke="#0A1230" stroke-width="1.2" />
-                      </svg>
+                      <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
                     </div>
                     <div class="locked-doc-details">
                       <div class="locked-doc-title">
@@ -615,7 +588,6 @@
                           <circle cx="10" cy="13" r="1.5" fill="#0A1230" />
                         </svg>
                       </div>
-                      <div class="locked-doc-sub">University-wise fees &bull; Living expenses &bull; Visa proof</div>
                     </div>
                   </div>
 
@@ -725,8 +697,6 @@
         <div class="sec-head">
           <span class="sticker">Destinations &amp; Study Options</span>
           <h2>Explore Countries. Compare Universities. <span class="hl">Choose Your Course.</span></h2>
-          <p>Looking for a Bachelor's in Germany or a Master's in Canada? Explore study destinations and compare the
-            academic options available to you.</p>
         </div>
 
         <div class="cgrid" id="cgrid"></div>
@@ -834,23 +804,6 @@
             </div>
           </div>
 
-          <!-- Ireland -->
-          <div class="dest-card">
-            <div class="dest-img-wrap">
-              <img src="assets/images/country/ireland.jpg" alt="Study in Ireland" loading="lazy" />
-              <span class="dest-badge">2-Year Stay Back</span>
-            </div>
-            <div class="dest-body">
-              <h3>IRELAND</h3>
-              <p>Europe's top Silicon Docks tech hub with 2-year Third Level Graduate scheme.</p>
-              <div class="dest-stats">
-                <div><span>Tuition Fees</span><b>€12,000 – €23,314/yr</b></div>
-                <div><span>Living Cost</span><b>€12,000/yr</b></div>
-              </div>
-              <button class="btn btn-primary" onclick="startCountryGuide('ireland')">Get Ireland Guide</button>
-            </div>
-          </div>
-
           <!-- Finland -->
           <div class="dest-card">
             <div class="dest-img-wrap">
@@ -879,56 +832,75 @@
     <section class="section" id="support">
       <div class="container">
         <div class="sec-head">
-          <h2>360 degree Support</h2>
-          <p>Comprehensive assistance from university admissions and top-ranked universities to post-study work permits
-            and PR guidance.</p>
+          <span class="sticker sun">360° Support</span>
+          <h2>360° Student Support</h2>
+          <p>Comprehensive guidance at every stage of your study abroad journey, from university admissions and IELTS preparation to student visas, post-study work permits and permanent residency.</p>
         </div>
 
         <div class="support-grid">
-          <!-- 1. Post-Study Work Permit Assistance -->
+          <!-- 1. Admissions to Top Universities -->
           <div class="sc">
             <div class="sc-num">01</div>
-            <h3>Post-Study Work Permit Assistance</h3>
-            <p>Our team assists you with post-study work permit documentation, application preparation and submission.
-            </p>
+            <h3>Admissions to Top Universities</h3>
+            <p>We help you shortlist universities, identify suitable courses and complete the admission process to achieve your academic goals.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-work-permit.png"
-                alt="3D Clay Executive Briefcase, Passport and Work Visa Scene" loading="lazy" />
+              <img src="assets/images/clay-scene-top-ranked.png"
+                alt="3D Clay Admissions to Top Universities Scene" loading="lazy" />
             </div>
           </div>
 
-          <!-- 2. Direct University Admissions -->
+          <!-- 2. Free IELTS Training -->
           <div class="sc">
             <div class="sc-num">02</div>
-            <h3>Direct University Admissions</h3>
-            <p>We help you shortlist suitable universities, prepare applications and complete the admission process.</p>
+            <h3>Free IELTS Training</h3>
+            <p>We provide IELTS training support to help you improve your English proficiency, build confidence and prepare for your language test.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-direct-admissions.png"
-                alt="3D Clay University Campus & Acceptance Letter Scene" loading="lazy" />
+              <img src="assets/images/clay-scene-ielts-training.png"
+                alt="3D Clay IELTS Training & English Preparation Scene" loading="lazy" />
             </div>
           </div>
 
-          <!-- 3. Admissions to Top-Ranked Universities -->
+          <!-- 3. Complete Document Support -->
           <div class="sc">
             <div class="sc-num">03</div>
-            <h3>Admissions to Top-Ranked Universities</h3>
-            <p>We help you identify and apply to globally recognised universities that align with your academic profile
-              and goals.</p>
+            <h3>Complete Document Support</h3>
+            <p>We assist you in preparing essential documents, including Statements of Purpose (SOP), Letters of Recommendation (LOR) and other application documents.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-top-ranked.png" alt="3D Clay Victory Podium & Golden Trophy Scene"
-                loading="lazy" />
+              <img src="assets/images/clay-scene-document-support.png"
+                alt="3D Clay Complete Document Support Scene" loading="lazy" />
             </div>
           </div>
 
-          <!-- 4. Permanent Residency Guidance -->
+          <!-- 4. Student Visa Assistance – No Charge -->
           <div class="sc">
             <div class="sc-num">04</div>
-            <h3>Permanent Residency Guidance</h3>
-            <p>Our team guides you through country-specific PR pathways, eligibility checks and the application process.
-            </p>
+            <h3>Student Visa Assistance – No Charge</h3>
+            <p>Our team provides visa guidance, documentation support and application assistance to make your visa process smooth and hassle-free, at no additional charge.</p>
+            <div class="sc-clay-scene">
+              <img src="assets/images/clay-scene-student-visa.png"
+                alt="3D Clay Student Visa Assistance Scene" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- 5. Post-Study Work Permit Assistance -->
+          <div class="sc">
+            <div class="sc-num">05</div>
+            <h3>Post-Study Work Permit Assistance</h3>
+            <p>We guide you through work permit documentation, application preparation and submission to help you explore career opportunities after graduation.</p>
+            <div class="sc-clay-scene">
+              <img src="assets/images/clay-scene-work-permit.png"
+                alt="3D Clay Post-Study Work Permit Assistance Scene" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- 6. Permanent Residency (PR) Guidance -->
+          <div class="sc">
+            <div class="sc-num">06</div>
+            <h3>Permanent Residency (PR) Guidance</h3>
+            <p>We provide country-specific PR guidance, eligibility assessments and application support to help you plan your long-term settlement abroad.</p>
             <div class="sc-clay-scene">
               <img src="assets/images/clay-scene-permanent-residency.png"
-                alt="3D Clay Cozy Cottage, PR House Key and Compass Scene" loading="lazy" />
+                alt="3D Clay Permanent Residency Guidance Scene" loading="lazy" />
             </div>
           </div>
         </div>
@@ -945,41 +917,37 @@
         <div class="sec-head">
           <span class="sticker sun">Post-Study Opportunities</span>
           <h2>What Can You Do <span class="hl">After Graduating Abroad?</span></h2>
-          <p>Your options after graduation depend on your degree, destination and current immigration rules.</p>
+          <p>Explore global career pathways after graduation, from employment and further studies to post-study work permits and long-term settlement.</p>
         </div>
 
         <div class="inside">
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-01-permit.png" alt="01" class="ic-num-img" width="925" height="514" loading="lazy" />
+              <img src="assets/images/post-study-01-placement.png" alt="01" class="ic-num-img" width="754" height="466" loading="lazy" />
             </div>
-            <h3>Post-Study Work Permits</h3>
-            <p>Access legal post-study work rights (such as UK Graduate Visa, Canada PGWP, or Australia PSW) to gain
-              international work experience.</p>
+            <h3>Internship &amp; University Placement</h3>
+            <p>Explore internship opportunities and university placement programs to gain practical experience and build your professional career.</p>
           </div>
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-02-employment.png" alt="02" class="ic-num-img" width="880" height="518" loading="lazy" />
-            </div>
-            <h3>Graduate Employment Opportunities</h3>
-            <p>Participate in campus recruitment drives, industry internships, and professional networking with
-              multinational employers.</p>
-          </div>
-          <div class="ic">
-            <div class="ic-num-wrap">
-              <img src="assets/images/post-study-03-further-studies.png" alt="03" class="ic-num-img" width="897" height="742" loading="lazy" />
+              <img src="assets/images/post-study-02-studies.png" alt="02" class="ic-num-img" width="662" height="698" loading="lazy" />
             </div>
             <h3>Further Studies &amp; Specialisation</h3>
-            <p>Seamlessly transition from undergraduate degrees into Master's or specialized doctoral research programs
-              worldwide.</p>
+            <p>Pursue Master's degrees or specialised doctoral research programs to advance your academic knowledge and expertise.</p>
           </div>
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-04-immigration.png" alt="04" class="ic-num-img" width="867" height="462" loading="lazy" />
+              <img src="assets/images/post-study-03-permit.png" alt="03" class="ic-num-img" width="985" height="444" loading="lazy" />
             </div>
-            <h3>Country-Specific Work &amp; Immigration</h3>
-            <p>Explore legal long-term settlement, skilled worker sponsorship, and residency routes tailored to
-              high-demand skills.</p>
+            <h3>Post-Study Work Permit</h3>
+            <p>Access legal post-study work opportunities, such as the UK Graduate Visa, Canada PGWP or Australia PSW, to gain international work experience.</p>
+          </div>
+          <div class="ic">
+            <div class="ic-num-wrap">
+              <img src="assets/images/post-study-04-employment.png" alt="04" class="ic-num-img" width="1073" height="432" loading="lazy" />
+            </div>
+            <h3>Graduate Employment Opportunities</h3>
+            <p>Explore campus recruitment, industry internships and professional networking opportunities with multinational employers.</p>
           </div>
         </div>
       </div>
@@ -997,11 +965,8 @@
               <div class="uy-story-top"><span class="uy-story-label">Student journey · Canada</span><span
                   class="uy-step-count" data-count>01 / 05</span></div>
               <div class="uy-visual" data-visual>
-                <img data-image src="assets/images/consultation-desk.webp"
-                  alt="One-to-one study abroad counselling consultation" />
-                <div class="uy-visual-symbol" data-symbol aria-hidden="true">✦</div>
-                <div class="uy-visual-copy"><span class="uy-visual-kicker" data-kicker>Milestone 01 ·
-                    Consultation</span></div>
+                <img data-image src="assets/images/consultation-unnati.jpg"
+                  alt="Unnati Parekh online counselling consultation with University Yatra" />
               </div>
               <div class="uy-step-body" aria-live="polite">
                 <h3 data-title>Every Big Dream Begins with the Right Guidance.</h3>
@@ -1016,7 +981,9 @@
               </div>
             </div>
             <div class="uy-profile">
-              <div class="uy-avatar" aria-hidden="true">UP</div>
+              <div class="uy-avatar" aria-hidden="true">
+                <img src="assets/images/avatar-unnati.jpg" alt="Unnati Parekh" />
+              </div>
               <div class="uy-person"><strong>Unnati Parekh</strong><span>Master's in Instrumental Chemical
                   Analysis<br>Trent University, Ontario, Canada</span></div>
             </div>
@@ -1029,11 +996,8 @@
               <div class="uy-story-top"><span class="uy-story-label">Student journey · Canada</span><span
                   class="uy-step-count" data-count>01 / 05</span></div>
               <div class="uy-visual" data-visual>
-                <img data-image src="assets/images/consultation-desk.webp"
-                  alt="One-to-one academic counselling consultation" />
-                <div class="uy-visual-symbol" data-symbol aria-hidden="true">◎</div>
-                <div class="uy-visual-copy"><span class="uy-visual-kicker" data-kicker>Milestone 01 · Academic
-                    review</span></div>
+                <img data-image src="assets/images/consultation-tauheed.jpg"
+                  alt="Tauheed Khan online academic counselling consultation with University Yatra" />
               </div>
               <div class="uy-step-body" aria-live="polite">
                 <h3 data-title>Three-Year Bachelor's Degree. Master's Dreams. One Big Challenge.</h3>
@@ -1048,7 +1012,9 @@
               </div>
             </div>
             <div class="uy-profile">
-              <div class="uy-avatar" aria-hidden="true">TK</div>
+              <div class="uy-avatar" aria-hidden="true">
+                <img src="assets/images/avatar-tauheed.jpg" alt="Tauheed Khan" />
+              </div>
               <div class="uy-person"><strong>Tauheed Khan</strong><span>Master's in Global Business Economy<br>Algoma
                   University, Sault Ste. Marie, Ontario, Canada</span></div>
             </div>
