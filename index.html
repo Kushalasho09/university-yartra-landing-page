@@ -1087,7 +1087,34 @@
 
         <!-- FINAL ENQUIRY SECTION -->
         <div class="enquiry-wrap" id="enquiry">
-          <!-- CTA Info Box -->
+          <!-- ENQUIRY FORM (Swapped to Left — Blue Card with White Button) -->
+          <div class="enquiry-card">
+            <h3>Let's Find the Right Study Abroad Option for You</h3>
+
+            <form class="form" id="enquiryForm">
+              <input class="fi" name="name" id="eq_name" placeholder="Full Name" required autocomplete="name" />
+              <div class="ph">
+                <span>+91</span>
+                <input class="fi" name="mobile" id="eq_mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}"
+                  maxlength="10" placeholder="WhatsApp Number" required autocomplete="tel" />
+              </div>
+              <input class="fi" name="email" id="eq_email" type="email" placeholder="Email Address" required
+                autocomplete="email" />
+
+              <button class="btn-enquiry-white" type="submit" id="enquirySubmitBtn">
+                <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                <span>Find My Study Options</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </form>
+
+            <div class="enquiry-success" id="enquirySuccess">
+              <h4>Thank you!</h4>
+              <p>Your enquiry has been received. Our team will contact you shortly.</p>
+            </div>
+          </div>
+
+          <!-- CTA Info Box (Swapped to Right — White Card with Blue Text & 3D Globe) -->
           <div class="cta-box">
             <img src="assets/images/clay-consultation-globe.png" alt="3D Polymer Clay Globe with Orbiting Airplane"
               class="cta-box-top-img" />
@@ -1107,31 +1134,6 @@
                 target="_blank" rel="noopener">
                 <i class="fa-brands fa-whatsapp"></i> Chat with a Counsellor
               </a>
-            </div>
-          </div>
-
-          <!-- ENQUIRY FORM -->
-          <div class="enquiry-card">
-            <h3>Let's Find the Right Study Abroad Option for You</h3>
-
-            <form class="form" id="enquiryForm">
-              <input class="fi" name="name" id="eq_name" placeholder="Full Name" required autocomplete="name" />
-              <div class="ph">
-                <span>+91</span>
-                <input class="fi" name="mobile" id="eq_mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}"
-                  maxlength="10" placeholder="WhatsApp Number" required autocomplete="tel" />
-              </div>
-              <input class="fi" name="email" id="eq_email" type="email" placeholder="Email Address" required
-                autocomplete="email" />
-
-              <button class="btn-cta-img-wrap" type="submit" id="enquirySubmitBtn" aria-label="Find My Study Options">
-                <img src="assets/images/cta-button-find-options.png" alt="Find My Study Options" class="btn-cta-img" width="1228" height="311" />
-              </button>
-            </form>
-
-            <div class="enquiry-success" id="enquirySuccess">
-              <h4>Thank you!</h4>
-              <p>Your enquiry has been received. Our team will contact you shortly.</p>
             </div>
           </div>
         </div>

@@ -2105,8 +2105,8 @@ details p {
 }
 
 .cta-box {
-  background: var(--blue);
-  color: #fff;
+  background: #ffffff;
+  color: var(--ink);
   border: var(--b);
   border-radius: 36px;
   padding: 95px 32px 34px;
@@ -2137,16 +2137,20 @@ details p {
 }
 
 .cta-box h2 {
-  color: #fff;
+  color: var(--blue);
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(2rem, 3.8vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.15;
   margin-bottom: 14px;
 }
 
 .cta-box p {
-  color: #DCE8FF;
-  font-size: 1.05rem;
+  color: var(--ink);
+  font-size: 1.02rem;
   line-height: 1.5;
   margin-bottom: 24px;
+  opacity: 0.9;
 }
 
 .cta-perks {
@@ -2159,12 +2163,13 @@ details p {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.94rem;
+  color: var(--ink);
 }
 
 .cta-perks li i {
-  color: var(--lime);
+  color: var(--blue);
 }
 
 .cta-box-actions {
@@ -2191,22 +2196,28 @@ details p {
 }
 
 .enquiry-card {
-  background: #fff;
+  background: var(--blue);
+  color: #ffffff;
   border: var(--b);
-  border-radius: 32px;
+  border-radius: 36px;
   padding: 40px 32px;
   box-shadow: 8px 8px 0 var(--ink);
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .enquiry-card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 6px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  color: #ffffff;
+  margin-bottom: 20px;
 }
 
 .enquiry-card p.sub {
-  color: var(--muted);
+  color: #DCE8FF;
   font-size: 0.94rem;
   margin-bottom: 20px;
 }
@@ -2215,7 +2226,67 @@ details p {
   gap: 14px;
 }
 
-/* 3D Clay CTA Image Button */
+.enquiry-card .fi:focus {
+  background: #ffffff;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Redesigned White Pill Button with Blue Text for Blue Form Card */
+.btn-enquiry-white {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #ffffff;
+  color: var(--blue);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 16px 24px;
+  border: 2.5px solid var(--ink);
+  border-radius: 99px;
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.15s cubic-bezier(0.2, 1.4, 0.3, 1), box-shadow 0.15s ease, background 0.15s ease;
+  margin-top: 6px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-enquiry-white:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+  background: #FFFDF5;
+}
+
+.btn-enquiry-white:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn-enquiry-white:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 4px;
+}
+
+.btn-enquiry-white:disabled {
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.btn-enquiry-white i {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.btn-enquiry-white:hover .fa-arrow-right {
+  transform: translateX(4px);
+}
+
+/* 3D Clay CTA Image Button (Legacy Fallback) */
 .btn-cta-img-wrap {
   display: block;
   width: 100%;
@@ -2319,6 +2390,7 @@ details p {
   .enquiry-wrap {
     grid-template-columns: 1fr;
     margin-top: 68px;
+    gap: 64px;
   }
 }
 
