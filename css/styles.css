@@ -2318,13 +2318,18 @@ details p {
 }
 
 .btn-cta-img-wrap:disabled {
-  opacity: 0.7;
+  opacity: 0.85;
   pointer-events: none;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
   color: var(--blue);
-  font-size: 0.95rem;
-  padding: 14px 0 !important;
+  background: #ffffff !important;
+  border: 2.5px solid var(--ink) !important;
+  border-radius: 99px !important;
+  box-shadow: 4px 4px 0 var(--ink) !important;
+  font-size: 1rem;
+  padding: 15px 24px !important;
+  text-align: center;
 }
 
 .btn-cta-img {
