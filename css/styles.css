@@ -3882,44 +3882,93 @@ footer {
 
 /* Mobile responsive constraints */
 @media (max-width: 600px) {
+  .calc-sec {
+    padding: 24px 0 28px;
+    scroll-margin-top: 56px;
+  }
+  .calc-sec .sec-head {
+    margin-bottom: 12px;
+  }
+  .calc-sec .sec-head h2 {
+    font-size: clamp(1.35rem, 5.2vw, 1.8rem);
+    margin-bottom: 4px;
+  }
   .calc-wizard-card {
-    padding: 18px 14px;
-    border-radius: 18px;
-    box-shadow: 4px 4px 0 var(--ink);
+    padding: 14px 12px 14px;
+    border-radius: 16px;
+    box-shadow: 3.5px 3.5px 0 var(--ink);
+    scroll-margin-top: 58px;
+  }
+  .wiz-header {
+    margin-bottom: 10px;
+  }
+  .wiz-step-title {
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+  .wiz-step-title .step-num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+  }
+  .wiz-step-title h3 {
+    font-size: 1.05rem;
+  }
+  .wiz-intake-banner {
+    padding: 6px 10px !important;
+    font-size: 0.74rem !important;
+    margin-bottom: 8px !important;
   }
   .wiz-grid-countries {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
-  .wiz-opt {
-    padding: 10px 10px;
+  .wiz-grid-countries .wiz-opt {
+    padding: 7px 8px;
+    gap: 6px;
   }
   .wiz-opt .c-name {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
   }
   .wiz-opt .c-sub {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+  }
+  .wiz-grid-cards {
+    gap: 6px;
   }
   .wiz-grid-cards .wiz-opt {
-    padding: 12px 14px;
-    gap: 10px;
+    padding: 7px 10px;
+    gap: 8px;
+  }
+  .wiz-grid-cards .opt-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .wiz-grid-cards .opt-icon svg {
+    width: 22px;
+    height: 22px;
   }
   .opt-body strong {
-    font-size: 0.96rem;
+    font-size: 0.88rem;
   }
   .opt-body span {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
   }
   .wiz-result-box {
-    padding: 16px 12px;
+    padding: 14px 10px;
+  }
+  .wiz-footer {
+    margin-top: 10px;
+    padding-top: 8px;
   }
   .wiz-prev-btn {
-    padding: 10px 14px;
-    font-size: 0.86rem;
+    padding: 8px 12px;
+    font-size: 0.82rem;
   }
   .wiz-next-btn {
-    padding: 11px 18px;
-    font-size: 0.88rem;
+    padding: 9px 16px;
+    font-size: 0.84rem;
   }
   .mbar {
     padding: 10px 14px;

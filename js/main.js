@@ -110,7 +110,32 @@
       intake: 'Autumn 2027 (Aug/Sept) · Spring 2028 (Jan)',
       guidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
       ftGuidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf'
+    },
+    'Other': {
+      flag: '🌐',
+      name: 'Other',
+      currency: 'USD',
+      fx: 'Flexible Global FX',
+      levels: {
+        "Bachelor's": { directTotal: 'Custom Estimate', ftAvailable: true, ftTotal: 'Custom Fast Track', ftSavings: 'Save up to 50%*' },
+        "Master's": { directTotal: 'Custom Estimate', ftAvailable: true, ftTotal: 'Custom Fast Track', ftSavings: 'Save up to 50%*' },
+        "MBA": { directTotal: 'Custom Estimate', ftAvailable: true, ftTotal: 'Custom Fast Track', ftSavings: 'Save up to 50%*' }
+      },
+      intake: 'Flexible Intakes across Europe, Asia & Overseas',
+      guidePdf: 'assets/pdfs/Canada_Country_Guide_University_Yatra_v4.pdf',
+      ftGuidePdf: 'assets/pdfs/University-Yatra-Canada-Fast-Track-Guide.pdf'
     }
+  };
+
+  const INTAKE_TABLE = {
+    'Germany': '<strong>Germany Intakes:</strong> Main: Winter (September/October) &bull; Additional: Summer (March/April)',
+    'Canada': '<strong>Canada Intakes:</strong> Main: Fall (September) &bull; Additional: Winter (January), Summer (May)',
+    'USA': '<strong>USA Intakes:</strong> Main: Fall (August/September) &bull; Additional: Spring (January), Summer (May/June)',
+    'United Kingdom': '<strong>UK Intakes:</strong> Main: September/October &bull; Additional: January, May',
+    'France': '<strong>France Intakes:</strong> Main: September/October &bull; Additional: January/February (selected programs)',
+    'Australia': '<strong>Australia Intakes:</strong> Main: February/March, July &bull; Additional: November (selected universities)',
+    'Finland': '<strong>Finland Intakes:</strong> Main: Autumn (August/September) &bull; Additional: Spring (January)',
+    'Other': '<strong>Other Destinations:</strong> Multiple flexible intakes across Europe, Asia & overseas'
   };
 
   const FLAG_SVGS = {
@@ -120,7 +145,8 @@
     'Australia': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#00008B"/><path d="M0 0H16V16H0Z" fill="#012169"/><path d="M0 0L16 16M16 0L0 16" stroke="#fff" stroke-width="2"/><path d="M0 0L16 16M16 0L0 16" stroke="#C8102E" stroke-width="1.2"/><path d="M8 0V16M0 8H16" stroke="#fff" stroke-width="3"/><path d="M8 0V16M0 8H16" stroke="#C8102E" stroke-width="1.8"/><circle cx="24" cy="8" r="1.5" fill="#fff"/><circle cx="27" cy="14" r="1.5" fill="#fff"/><circle cx="22" cy="20" r="1.5" fill="#fff"/><circle cx="25" cy="25" r="1.5" fill="#fff"/><circle cx="8" cy="24" r="2.5" fill="#fff"/></svg>',
     'USA': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 3H32M0 8H32M0 13H32M0 18H32M0 23H32M0 28H32" stroke="#B22234" stroke-width="2.6"/><rect width="15" height="16" fill="#3C3B6E"/><circle cx="4" cy="4" r="1" fill="#fff"/><circle cx="11" cy="4" r="1" fill="#fff"/><circle cx="7.5" cy="8" r="1" fill="#fff"/><circle cx="4" cy="12" r="1" fill="#fff"/><circle cx="11" cy="12" r="1" fill="#fff"/></svg>',
     'France': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H11V32H0Z" fill="#002654"/><path d="M11 0H21V32H11Z" fill="#FFFFFF"/><path d="M21 0H32V32H21Z" fill="#ED2939"/></svg>',
-    'Finland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 13H32V19H0Z" fill="#003580"/><path d="M10 0H16V32H10Z" fill="#003580"/></svg>'
+    'Finland': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#FFFDF5"/><path d="M0 13H32V19H0Z" fill="#003580"/><path d="M10 0H16V32H10Z" fill="#003580"/></svg>',
+    'Other': '<svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="15" fill="#1856F3" stroke="#0A1230" stroke-width="1.8"/><ellipse cx="16" cy="16" rx="7" ry="14.5" fill="none" stroke="#C8FF3E" stroke-width="1.6"/><line x1="1.5" y1="16" x2="30.5" y2="16" stroke="#C8FF3E" stroke-width="1.6"/><line x1="3.5" y1="10" x2="28.5" y2="10" stroke="#FFFDF5" stroke-width="1.4"/><line x1="3.5" y1="22" x2="28.5" y2="22" stroke="#FFFDF5" stroke-width="1.4"/></svg>'
   };
 
   /* Current Active State */
@@ -184,6 +210,12 @@
         nextBtn.style.display = 'inline-flex';
         nextBtn.innerHTML = (currentStep === 4) ? 'Calculate Cost <i class="fa-solid fa-calculator"></i>' : 'Continue <i class="fa-solid fa-arrow-right"></i>';
       }
+
+      // Update dynamic intake schedule banner for chosen country
+      const intakeTextEl = $('countryIntakeText');
+      if (intakeTextEl) {
+        intakeTextEl.innerHTML = INTAKE_TABLE[S.country] || INTAKE_TABLE['Canada'];
+      }
     } else {
       // Step 5: Result View
       if (progressFill) progressFill.style.width = '100%';
@@ -197,9 +229,19 @@
       }
       calculateResults();
     }
+
+    // Calculator Must Be once view to every transition of screen (Continue / Prev)
+    const cardEl = $('calcWizardCard');
+    if (cardEl && currentStep > 1) {
+      const rect = cardEl.getBoundingClientRect();
+      if (rect.top < 50 || rect.top > 140) {
+        cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   }
 
   function calculateResults() {
+    const isOther = (S.country === 'Other');
     const cData = DOCX_DATA[S.country] || DOCX_DATA['Canada'];
     const lvlData = cData.levels[S.level] || cData.levels["Master's"];
 
@@ -208,12 +250,19 @@
     const titleText = $('rTitleText');
     const lockedDocName = $('lockedCountryDocName');
     const quickSubmitBtn = $('calcQuickSubmitBtn');
+    const otherBlock = $('otherCountryBlock');
+    const lockedCard = document.querySelector('.locked-report-card');
+
+    if (otherBlock) otherBlock.style.display = isOther ? 'block' : 'none';
+    if (lockedCard) lockedCard.style.display = isOther ? 'none' : 'block';
 
     if (flagEl) flagEl.innerHTML = FLAG_SVGS[S.country] || FLAG_SVGS['Canada'];
-    if (titleText) titleText.textContent = `${S.country} · ${S.level} Programme`;
-    if (lockedDocName) lockedDocName.textContent = `${S.country} Complete Cost Guide`;
+    if (titleText) titleText.textContent = isOther ? `Other Destinations · ${S.level} Programme` : `${S.country} · ${S.level} Programme`;
+    if (lockedDocName) lockedDocName.textContent = isOther ? 'Global Study Abroad Guide' : `${S.country} Complete Cost Guide`;
     if (quickSubmitBtn) {
-      quickSubmitBtn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${S.country} Cost Guide</span>`;
+      quickSubmitBtn.innerHTML = isOther ?
+        `<i class="fa-solid fa-lock-open"></i> <span>Download Free Global Study Guide</span>` :
+        `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${S.country} Cost Guide</span>`;
     }
 
     // Exact Verified Figures (Blurred Behind Padlock until Lead submit)
@@ -301,6 +350,7 @@
         const name = String(fd.get('name') || '').trim();
         const email = String(fd.get('email') || '').trim();
         const country = S.country || 'Canada';
+        const isOther = (country === 'Other');
 
         if (phone.length < 7 || phone.length > 12) {
           alert('Please enter a valid mobile number');
@@ -310,18 +360,22 @@
         const btn = $('calcQuickSubmitBtn');
         if (btn) {
           btn.disabled = true;
-          btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Preparing ${country} Cost Guide...</span>`;
+          btn.innerHTML = isOther ?
+            `<i class="fa-solid fa-spinner fa-spin"></i> <span>Preparing Global Study Guide...</span>` :
+            `<i class="fa-solid fa-spinner fa-spin"></i> <span>Preparing ${country} Cost Guide...</span>`;
         }
 
         const cData = DOCX_DATA[country] || DOCX_DATA['Canada'];
         const isFT = S.pathway === 'fast-track';
-        const guidePdf = isFT ? cData.ftGuidePdf : cData.guidePdf;
+        const guidePdf = isOther ? 'assets/pdfs/Canada_Country_Guide_University_Yatra_v4.pdf' : (isFT ? cData.ftGuidePdf : cData.guidePdf);
 
         setTimeout(() => {
           // Reset the submit button state so it is never permanently stuck on spinner
           if (btn) {
             btn.disabled = false;
-            btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${country} Cost Guide</span>`;
+            btn.innerHTML = isOther ?
+              `<i class="fa-solid fa-lock-open"></i> <span>Download Free Global Study Guide</span>` :
+              `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${country} Cost Guide</span>`;
           }
 
           // Unblur and reveal the personalized figures upon unlock!
@@ -334,7 +388,7 @@
 
           // Update country name on success banner and cleanly show it
           const scName = $('successCountryName');
-          if (scName) scName.textContent = country;
+          if (scName) scName.textContent = isOther ? 'Global Study Abroad' : country;
           quickSuccess.classList.add('is-active');
           quickSuccess.style.setProperty('display', 'block', 'important');
 
@@ -355,7 +409,9 @@
 
           // Open WhatsApp with detailed message
           const emailNote = email ? ` (Email: ${email})` : '';
-          const msg = `Hi University Yatra, my name is ${name}. I am looking for ${S.level} programmes in ${country} (Route: ${S.pathway}, Target Intake: ${S.timeline}). I just unlocked the official ${country} cost guide${emailNote}. Please connect with me at ${phoneCode} ${phone}.`;
+          const msg = isOther ?
+            `Hi University Yatra, my name is ${name}. I am looking for ${S.level} programmes in other international destinations (Europe, Asia or elsewhere - Target Intake: ${S.timeline}). Please connect with me to give me a clearer idea of what to expect${emailNote}. Contact me at ${phoneCode} ${phone}.` :
+            `Hi University Yatra, my name is ${name}. I am looking for ${S.level} programmes in ${country} (Route: ${S.pathway}, Target Intake: ${S.timeline}). I just unlocked the official ${country} cost guide${emailNote}. Please connect with me at ${phoneCode} ${phone}.`;
           window.open(wa(msg), '_blank');
         }, 400);
       });
@@ -414,7 +470,8 @@
       'australia': 'Australia',
       'usa': 'USA',
       'france': 'France',
-      'finland': 'Finland'
+      'finland': 'Finland',
+      'other': 'Other'
     };
     const cName = map[String(cKey).toLowerCase()] || 'Canada';
     const btn = document.querySelector(`.wiz-opt[data-k="country"][data-v="${cName}"]`);
