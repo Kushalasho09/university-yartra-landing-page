@@ -238,6 +238,12 @@ header {
   z-index: 900;
   background: #fff;
   border-bottom: var(--b);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+body.scroll-down header {
+  transform: translateY(-105%);
 }
 
 .nav {
@@ -1835,18 +1841,17 @@ select.fi {
   margin: 0 auto;
 }
 #testimonials .uy-heading, #uy-testimonials .uy-heading {
-  margin: 0 0 32px;
+  margin: 0 0 28px;
   text-align: center;
 }
-#testimonials .uy-heading:before, #uy-testimonials .uy-heading:before {
-  content: '★  VERIFIED GUIDANCE';
+.uy-badge {
   display: inline-flex;
-  margin: 0 0 15px;
-  padding: 8px 13px;
+  margin: 0 0 12px;
+  padding: 7px 13px;
   background: var(--uy-yellow);
   border: 2px solid var(--uy-ink);
   border-radius: 5px;
-  box-shadow: 3px 3px 0 var(--uy-ink);
+  box-shadow: 2.5px 2.5px 0 var(--uy-ink);
   font: 800 11px/1 'DM Sans', sans-serif;
   letter-spacing: .1em;
   transform: rotate(-1deg);
@@ -1854,11 +1859,10 @@ select.fi {
 #testimonials .uy-heading h2, #uy-testimonials .uy-heading h2 {
   margin: 0;
   color: var(--uy-ink);
-  font: 800 clamp(34px, 4.5vw, 52px)/1.05 'Bricolage Grotesque', sans-serif;
-  letter-spacing: -.045em;
+  font: 800 clamp(24px, 4vw, 42px)/1.18 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -.03em;
 }
-#testimonials .uy-heading h2:after, #uy-testimonials .uy-heading h2:after {
-  content: ' Real Student Journeys.';
+.uy-blue-text {
   color: var(--uy-blue);
 }
 #testimonials .uy-grid, #uy-testimonials .uy-grid {
@@ -2113,18 +2117,18 @@ select.fi {
     scroll-margin-top: 56px;
   }
   #testimonials .uy-heading, #uy-testimonials .uy-heading {
-    margin: 0 0 clamp(8px, 1.5vh, 12px);
+    margin: 0 0 clamp(10px, 1.8vh, 16px);
   }
-  #testimonials .uy-heading:before, #uy-testimonials .uy-heading:before {
+  .uy-badge {
     margin: 0 0 6px;
     padding: 4px 10px;
     font-size: 10px;
     letter-spacing: .08em;
   }
   #testimonials .uy-heading h2, #uy-testimonials .uy-heading h2 {
-    font-size: clamp(20px, 5.5vw, 26px);
-    line-height: 1.12;
-    letter-spacing: -.03em;
+    font-size: clamp(20px, 5.2vw, 25px);
+    line-height: 1.18;
+    letter-spacing: -.025em;
   }
   #testimonials .uy-grid, #uy-testimonials .uy-grid {
     max-width: 420px;
@@ -2721,6 +2725,12 @@ footer {
   align-items: center;
   justify-content: center;
   box-shadow: 0 -4px 16px rgba(10, 18, 48, 0.1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+body.scroll-down .mbar {
+  transform: translateY(125%);
 }
 
 .mbar .btn-wa {
@@ -3880,102 +3890,126 @@ footer {
   margin-left: auto;
 }
 
-/* Mobile responsive constraints */
-@media (max-width: 600px) {
+/* Mobile responsive constraints (ViewOnce Calculator) */
+@media (max-width: 640px) {
   .calc-sec {
-    padding: 24px 0 28px;
-    scroll-margin-top: 56px;
+    min-height: 100svh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 10px 12px;
+    box-sizing: border-box;
+    scroll-margin-top: 0;
   }
   .calc-sec .sec-head {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .calc-sec .sec-head .sticker {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    margin-bottom: 3px;
   }
   .calc-sec .sec-head h2 {
-    font-size: clamp(1.35rem, 5.2vw, 1.8rem);
-    margin-bottom: 4px;
+    font-size: 1.22rem;
+    line-height: 1.15;
+    margin-bottom: 0;
   }
   .calc-wizard-card {
-    padding: 14px 12px 14px;
+    padding: 12px 10px 10px;
     border-radius: 16px;
-    box-shadow: 3.5px 3.5px 0 var(--ink);
-    scroll-margin-top: 58px;
+    box-shadow: 3px 3px 0 var(--ink);
+    width: 100%;
+    box-sizing: border-box;
+    scroll-margin-top: 40px;
   }
   .wiz-header {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+  .wiz-progress-bar {
+    height: 6px;
+    margin-bottom: 5px;
+  }
+  .wiz-header-meta {
+    font-size: 0.74rem;
   }
   .wiz-step-title {
-    margin-bottom: 8px;
-    gap: 8px;
+    margin-bottom: 6px;
+    gap: 6px;
   }
   .wiz-step-title .step-num {
-    width: 24px;
-    height: 24px;
-    font-size: 0.8rem;
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
   }
   .wiz-step-title h3 {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
   }
   .wiz-intake-banner {
-    padding: 6px 10px !important;
-    font-size: 0.74rem !important;
-    margin-bottom: 8px !important;
+    padding: 5px 8px !important;
+    font-size: 0.72rem !important;
+    margin-bottom: 6px !important;
+    border-radius: 8px !important;
   }
   .wiz-grid-countries {
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    gap: 5px;
   }
   .wiz-grid-countries .wiz-opt {
-    padding: 7px 8px;
-    gap: 6px;
+    padding: 6px 6px;
+    gap: 5px;
   }
   .wiz-opt .c-name {
-    font-size: 0.88rem;
-  }
-  .wiz-opt .c-sub {
-    font-size: 0.68rem;
-  }
-  .wiz-grid-cards {
-    gap: 6px;
-  }
-  .wiz-grid-cards .wiz-opt {
-    padding: 7px 10px;
-    gap: 8px;
-  }
-  .wiz-grid-cards .opt-icon {
-    width: 28px;
-    height: 28px;
-  }
-  .wiz-grid-cards .opt-icon svg {
-    width: 22px;
-    height: 22px;
-  }
-  .opt-body strong {
-    font-size: 0.88rem;
-  }
-  .opt-body span {
-    font-size: 0.72rem;
-    line-height: 1.25;
-  }
-  .wiz-result-box {
-    padding: 14px 10px;
-  }
-  .wiz-footer {
-    margin-top: 10px;
-    padding-top: 8px;
-  }
-  .wiz-prev-btn {
-    padding: 8px 12px;
-    font-size: 0.82rem;
-  }
-  .wiz-next-btn {
-    padding: 9px 16px;
     font-size: 0.84rem;
   }
+  .wiz-opt .c-sub {
+    font-size: 0.65rem;
+  }
+  .wiz-grid-cards {
+    gap: 5px;
+  }
+  .wiz-grid-cards .wiz-opt {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  .wiz-grid-cards .opt-icon {
+    width: 26px;
+    height: 26px;
+  }
+  .wiz-grid-cards .opt-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .opt-body strong {
+    font-size: 0.84rem;
+  }
+  .opt-body span {
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
+  .wiz-result-box {
+    padding: 10px 8px;
+  }
+  .wiz-footer {
+    margin-top: 8px;
+    padding-top: 6px;
+  }
+  .wiz-prev-btn {
+    padding: 7px 10px;
+    font-size: 0.78rem;
+  }
+  .wiz-next-btn {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
   .mbar {
-    padding: 10px 14px;
+    padding: 8px 12px;
   }
   .mbar .btn-wa {
-    font-size: 0.95rem;
-    padding: 14px 18px;
+    font-size: 0.90rem;
+    padding: 10px 16px;
+    height: 42px;
   }
 }
 

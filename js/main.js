@@ -249,21 +249,36 @@
     const flagEl = $('rCountryFlag');
     const titleText = $('rTitleText');
     const lockedDocName = $('lockedCountryDocName');
-    const quickSubmitBtn = $('calcQuickSubmitBtn');
     const otherBlock = $('otherCountryBlock');
     const lockedCard = document.querySelector('.locked-report-card');
+    const quickForm = $('calcQuickLeadForm');
+    const quickSuccess = $('calcQuickSuccess');
+    const discEl = document.querySelector('.wiz-result-box .disc');
 
     if (otherBlock) otherBlock.style.display = isOther ? 'block' : 'none';
     if (lockedCard) lockedCard.style.display = isOther ? 'none' : 'block';
 
+    // In 'Others', hide lead form and 'Download Free Global Study Guide' button completely as requested
+    if (quickForm) {
+      if (isOther) {
+        quickForm.classList.add('is-hidden');
+        quickForm.style.setProperty('display', 'none', 'important');
+      } else {
+        quickForm.classList.remove('is-hidden');
+        quickForm.style.setProperty('display', 'flex');
+      }
+    }
+    if (quickSuccess && isOther) {
+      quickSuccess.classList.remove('is-active');
+      quickSuccess.style.setProperty('display', 'none', 'important');
+    }
+    if (discEl) {
+      discEl.style.display = isOther ? 'none' : 'block';
+    }
+
     if (flagEl) flagEl.innerHTML = FLAG_SVGS[S.country] || FLAG_SVGS['Canada'];
     if (titleText) titleText.textContent = isOther ? `Other Destinations · ${S.level} Programme` : `${S.country} · ${S.level} Programme`;
-    if (lockedDocName) lockedDocName.textContent = isOther ? 'Global Study Abroad Guide' : `${S.country} Complete Cost Guide`;
-    if (quickSubmitBtn) {
-      quickSubmitBtn.innerHTML = isOther ?
-        `<i class="fa-solid fa-lock-open"></i> <span>Download Free Global Study Guide</span>` :
-        `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${S.country} Cost Guide</span>`;
-    }
+    if (lockedDocName) lockedDocName.textContent = `${S.country} Complete Cost Guide`;
 
     // Exact Verified Figures (Blurred Behind Padlock until Lead submit)
     const blurDirect = $('blurDirectTotal');
@@ -274,26 +289,26 @@
     if (blurFt) blurFt.textContent = lvlData.ftTotal;
     if (blurSav) blurSav.textContent = lvlData.ftSavings;
 
-    // Check if user already unlocked this destination in current session
-    try {
-      const unlockedCountry = sessionStorage.getItem('uy_calc_unlocked');
-      if (unlockedCountry && unlockedCountry === S.country) {
-        const costsTable = $('lockedCostsTable');
-        if (costsTable) costsTable.classList.add('unlocked');
-        const quickForm = $('calcQuickLeadForm');
-        if (quickForm) {
-          quickForm.classList.add('is-hidden');
-          quickForm.style.setProperty('display', 'none', 'important');
+    if (!isOther) {
+      // Check if user already unlocked this destination in current session
+      try {
+        const unlockedCountry = sessionStorage.getItem('uy_calc_unlocked');
+        if (unlockedCountry && unlockedCountry === S.country) {
+          const costsTable = $('lockedCostsTable');
+          if (costsTable) costsTable.classList.add('unlocked');
+          if (quickForm) {
+            quickForm.classList.add('is-hidden');
+            quickForm.style.setProperty('display', 'none', 'important');
+          }
+          if (quickSuccess) {
+            quickSuccess.classList.add('is-active');
+            quickSuccess.style.setProperty('display', 'block', 'important');
+            const scName = $('successCountryName');
+            if (scName) scName.textContent = S.country;
+          }
         }
-        const quickSuccess = $('calcQuickSuccess');
-        if (quickSuccess) {
-          quickSuccess.classList.add('is-active');
-          quickSuccess.style.setProperty('display', 'block', 'important');
-          const scName = $('successCountryName');
-          if (scName) scName.textContent = S.country;
-        }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
   }
 
   function initWizardController() {
@@ -1118,6 +1133,41 @@
     scheduleNext();
   }
 
+  /* =====================================================
+     SCROLL DIRECTION CONTROLLER
+     Scroll DOWN -> Hide header (University Yatra) & Bottom Bar (Chat on WhatsApp)
+     Scroll UP   -> Reveal header & Bottom Bar smoothly
+     ===================================================== */
+  function initScrollDirectionBars() {
+    let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    let ticking = false;
+    const threshold = 6;
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+          const diff = currentScrollY - lastScrollY;
+
+          if (currentScrollY <= 20) {
+            // At top of page
+            document.body.classList.remove('scroll-down');
+          } else if (diff > threshold) {
+            // User is scrolling DOWN
+            document.body.classList.add('scroll-down');
+          } else if (diff < -threshold) {
+            // User is scrolling UP
+            document.body.classList.remove('scroll-down');
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initWizardController();
     initBottomEnquiry();
@@ -1125,6 +1175,7 @@
     initPathwaysSlider();
     initTestimonialsStories();
     initHeroDialogue();
+    initScrollDirectionBars();
   });
 
 })();
