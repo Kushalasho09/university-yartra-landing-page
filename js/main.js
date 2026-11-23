@@ -874,7 +874,7 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     section.querySelectorAll('[data-story]').forEach(card => {
       const key = card.dataset.story, steps = stories[key];
-      if (!steps) return;
+      if (!steps || !card.querySelector('[data-dots]')) return;
       let index = 0, timer = null;
       const image = card.querySelector('[data-image]'),
             title = card.querySelector('[data-title]'),
