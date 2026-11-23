@@ -62,8 +62,8 @@
       fx: 'AUD 1 = ₹58',
       levels: {
         "Bachelor's": { directTotal: '≈ ₹1.16 Cr', ftAvailable: true, ftTotal: '≈ ₹82.8 Lakhs', ftSavings: '≈ ₹32.9 Lakhs' },
-        "Master's": { directTotal: '≈ ₹72.0 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' },
-        "MBA": { directTotal: '≈ ₹77.8 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' }
+        "Master's": { directTotal: '≈ ₹72.0 Lakhs', ftAvailable: false, ftTotal: 'Regular Admission Only', ftSavings: 'Regular Admission Only' },
+        "MBA": { directTotal: '≈ ₹77.8 Lakhs', ftAvailable: false, ftTotal: 'Regular Admission Only', ftSavings: 'Regular Admission Only' }
       },
       intake: 'July 2027 (Main) · February 2028 (Secondary)',
       guidePdf: 'assets/pdfs/Australia_Country_Guide_University_Yatra_v1.pdf',
@@ -91,7 +91,7 @@
       levels: {
         "Bachelor's": { directTotal: '≈ ₹73.1 Lakhs', ftAvailable: true, ftTotal: '≈ ₹54.0 Lakhs', ftSavings: '≈ ₹19.1 Lakhs' },
         "Master's": { directTotal: '≈ ₹55.0 Lakhs', ftAvailable: true, ftTotal: '≈ ₹32.9 Lakhs', ftSavings: '≈ ₹22.1 Lakhs' },
-        "MBA": { directTotal: '≈ ₹61.0 Lakhs', ftAvailable: false, ftTotal: 'Direct Study Only', ftSavings: 'Direct Study Only' }
+        "MBA": { directTotal: '≈ ₹61.0 Lakhs', ftAvailable: false, ftTotal: 'Regular Admission Only', ftSavings: 'Regular Admission Only' }
       },
       intake: 'September 2027 (Main) · January 2028 (Secondary)',
       guidePdf: 'assets/pdfs/Germany_Country_Guide_University_Yatra_v2.pdf',
@@ -138,17 +138,24 @@
     if (costsTable) costsTable.classList.remove('unlocked');
     const quickForm = $('calcQuickLeadForm');
     if (quickForm) {
-      quickForm.style.display = '';
+      quickForm.classList.remove('is-hidden');
+      quickForm.style.setProperty('display', 'flex');
       quickForm.reset();
     }
     const quickSuccess = $('calcQuickSuccess');
-    if (quickSuccess) quickSuccess.style.display = 'none';
+    if (quickSuccess) {
+      quickSuccess.classList.remove('is-active');
+      quickSuccess.style.setProperty('display', 'none');
+    }
     const btn = $('calcQuickSubmitBtn');
     if (btn) {
       btn.disabled = false;
       const cName = S.country || 'Canada';
       btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${cName} Cost Guide</span>`;
     }
+    try {
+      sessionStorage.removeItem('uy_calc_unlocked');
+    } catch (e) {}
   }
 
   function updateStepView() {
@@ -217,6 +224,27 @@
     if (blurDirect) blurDirect.textContent = lvlData.directTotal;
     if (blurFt) blurFt.textContent = lvlData.ftTotal;
     if (blurSav) blurSav.textContent = lvlData.ftSavings;
+
+    // Check if user already unlocked this destination in current session
+    try {
+      const unlockedCountry = sessionStorage.getItem('uy_calc_unlocked');
+      if (unlockedCountry && unlockedCountry === S.country) {
+        const costsTable = $('lockedCostsTable');
+        if (costsTable) costsTable.classList.add('unlocked');
+        const quickForm = $('calcQuickLeadForm');
+        if (quickForm) {
+          quickForm.classList.add('is-hidden');
+          quickForm.style.setProperty('display', 'none', 'important');
+        }
+        const quickSuccess = $('calcQuickSuccess');
+        if (quickSuccess) {
+          quickSuccess.classList.add('is-active');
+          quickSuccess.style.setProperty('display', 'block', 'important');
+          const scName = $('successCountryName');
+          if (scName) scName.textContent = S.country;
+        }
+      }
+    } catch (e) {}
   }
 
   function initWizardController() {
@@ -290,12 +318,30 @@
         const guidePdf = isFT ? cData.ftGuidePdf : cData.guidePdf;
 
         setTimeout(() => {
+          // Reset the submit button state so it is never permanently stuck on spinner
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${country} Cost Guide</span>`;
+          }
+
           // Unblur and reveal the personalized figures upon unlock!
           const costsTable = $('lockedCostsTable');
           if (costsTable) costsTable.classList.add('unlocked');
 
-          quickForm.style.display = 'none';
-          quickSuccess.style.display = 'block';
+          // Cleanly hide lead form (both class and inline !important)
+          quickForm.classList.add('is-hidden');
+          quickForm.style.setProperty('display', 'none', 'important');
+
+          // Update country name on success banner and cleanly show it
+          const scName = $('successCountryName');
+          if (scName) scName.textContent = country;
+          quickSuccess.classList.add('is-active');
+          quickSuccess.style.setProperty('display', 'block', 'important');
+
+          // Save unlocked state to sessionStorage
+          try {
+            sessionStorage.setItem('uy_calc_unlocked', country);
+          } catch (e) {}
 
           // Trigger PDF download
           if (guidePdf) {
@@ -315,16 +361,46 @@
       });
     }
 
+    // Download Again button inside success view
+    const downloadAgainBtn = $('calcDownloadAgainBtn');
+    if (downloadAgainBtn) {
+      downloadAgainBtn.addEventListener('click', () => {
+        const country = S.country || 'Canada';
+        const cData = DOCX_DATA[country] || DOCX_DATA['Canada'];
+        const isFT = S.pathway === 'fast-track';
+        const guidePdf = isFT ? cData.ftGuidePdf : cData.guidePdf;
+        if (guidePdf) {
+          const a = document.createElement('a');
+          a.href = guidePdf;
+          a.setAttribute('download', '');
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      });
+    }
+
     // Reset button inside success view
     const resetBtn = $('calcResetBtn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
+        resetResultGate();
         currentStep = 1;
         updateStepView();
         const calcEl = $('calculator');
         if (calcEl) calcEl.scrollIntoView({ behavior: 'smooth' });
       });
     }
+
+    // Prevent stuck disabled/loading buttons when returning from another tab or BFCache
+    window.addEventListener('pageshow', () => {
+      const btn = $('calcQuickSubmitBtn');
+      if (btn && btn.disabled) {
+        btn.disabled = false;
+        const cName = S.country || 'Canada';
+        btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Download Free ${cName} Cost Guide</span>`;
+      }
+    });
 
     updateStepView();
   }
@@ -657,7 +733,7 @@
 
     let currentIndex = 0;
     let autoTimer = null;
-    const INTERVAL_MS = 5000; // 5 seconds loop
+    const INTERVAL_MS = 2800; // Set transition delay to under 3 seconds (2.8s auto-scroll)
 
     function goToSlide(index, restartTimer = true) {
       if (window.innerWidth > 768) {
@@ -869,12 +945,129 @@
     });
   }
 
+  /* =====================================================
+     HERO 3-FRIENDS CHAT CONTROLLER
+     Infinite loop conversational speech bubbles directly above speakers
+     ===================================================== */
+  function initHeroDialogue() {
+    const stage = document.getElementById('heroDialogueStage');
+    if (!stage) return;
+
+    const bubble3 = document.getElementById('bubbleSpeaker3');
+    const bubble1 = document.getElementById('bubbleSpeaker1');
+    const bubble2 = document.getElementById('bubbleSpeaker2');
+
+    const text3 = document.getElementById('bubbleText3');
+    const text1 = document.getElementById('bubbleText1');
+    const text2 = document.getElementById('bubbleText2');
+
+    if (!bubble3 || !bubble1 || !bubble2) return;
+
+    // The 9 dialogue lines requested by the user:
+    // Speaker 1: Middle girl (purple sweater)
+    // Speaker 2: Right boy (green jacket)
+    // Speaker 3: Left boy (glasses & headphones - guide)
+    const DIALOGUE = [
+      { speaker: 1, text: 'Fast Track abroad?', duration: 2400 },
+      { speaker: 2, text: 'How does it work?', duration: 2400 },
+      { speaker: 3, text: 'Start online in India.', duration: 2600 },
+      { speaker: 1, text: 'For 8–12 months?', duration: 2400 },
+      { speaker: 3, text: 'Then transfer abroad.', duration: 2600 },
+      { speaker: 2, text: 'Lower study costs?', duration: 2400 },
+      { speaker: 3, text: 'Save up to 50%*.', duration: 2600 },
+      { speaker: 1, text: 'Who can guide us?', duration: 2400 },
+      { speaker: 3, text: 'University Yatra', duration: 3400, isHighlight: true }
+    ];
+
+    let currentIndex = 0;
+    let timer = null;
+    let isPaused = false;
+
+    function renderStep(index) {
+      const item = DIALOGUE[index];
+
+      // Deactivate all bubbles first
+      bubble1.classList.remove('is-active');
+      bubble2.classList.remove('is-active');
+      bubble3.classList.remove('is-active', 'is-brand-highlight');
+
+      requestAnimationFrame(() => {
+        if (item.speaker === 1) {
+          if (text1) text1.textContent = item.text;
+          bubble1.classList.add('is-active');
+        } else if (item.speaker === 2) {
+          if (text2) text2.textContent = item.text;
+          bubble2.classList.add('is-active');
+        } else if (item.speaker === 3) {
+          if (text3) text3.textContent = item.text;
+          if (item.isHighlight) {
+            bubble3.classList.add('is-brand-highlight');
+          }
+          bubble3.classList.add('is-active');
+        }
+      });
+    }
+
+    function scheduleNext() {
+      if (timer) clearTimeout(timer);
+      const currentItem = DIALOGUE[currentIndex];
+      const duration = currentItem.duration || 2400;
+
+      timer = setTimeout(() => {
+        if (isPaused) return;
+        currentIndex++;
+        if (currentIndex >= DIALOGUE.length) {
+          // Loop reset: fade out last message, pause gently, then start from beginning
+          bubble1.classList.remove('is-active');
+          bubble2.classList.remove('is-active');
+          bubble3.classList.remove('is-active', 'is-brand-highlight');
+
+          currentIndex = 0;
+          timer = setTimeout(() => {
+            if (!isPaused) {
+              renderStep(currentIndex);
+              scheduleNext();
+            }
+          }, 450);
+        } else {
+          renderStep(currentIndex);
+          scheduleNext();
+        }
+      }, duration);
+    }
+
+    // Tap/click anywhere on stage to advance conversation immediately
+    stage.addEventListener('click', () => {
+      if (timer) clearTimeout(timer);
+      currentIndex = (currentIndex + 1) % DIALOGUE.length;
+      renderStep(currentIndex);
+      scheduleNext();
+    });
+
+    // Handle tab visibility to avoid queuing animations
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        isPaused = true;
+        if (timer) clearTimeout(timer);
+      } else {
+        isPaused = false;
+        renderStep(currentIndex);
+        scheduleNext();
+      }
+    });
+
+    // Initial trigger
+    renderStep(0);
+    scheduleNext();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initWizardController();
     initBottomEnquiry();
     initStickerSlapFooter();
     initPathwaysSlider();
     initTestimonialsStories();
+    initHeroDialogue();
   });
 
 })();

@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>University Yatra | Study Abroad After 12th & Graduation</title>
   <meta name="description"
-    content="Explore international universities, compare Direct vs Fast Track study pathways, estimate costs, and download free country guides for Indian students." />
+    content="Explore international universities, compare Regular vs Fast Track study pathways, estimate costs, and download free country guides for Indian students." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,7 @@
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=testim_view1" />
 </head>
 
 <body>
@@ -52,16 +52,38 @@
             Explore international universities and degree programmes. Compare countries, admission requirements and
             tuition fees before deciding where to study.
           </p>
-          <div class="hero-map-wrap">
-            <img src="assets/images/hero-clay-world-map.png" alt="Global Study Abroad 3D Clay World Map"
-              class="hero-map-img" loading="eager" />
+          <!-- HERO 3-FRIENDS CONVERSATION STAGE -->
+          <div class="hero-dialogue-stage" id="heroDialogueStage" role="region" aria-label="Interactive student conversation about studying abroad">
+            <!-- Speech Bubbles Arena -->
+            <div class="chat-bubbles-arena" aria-live="polite">
+              <!-- Bubble for Person 3 (Left, Boy with glasses & headphones) -->
+              <div class="chat-bubble bubble-speaker-3" id="bubbleSpeaker3" data-speaker="3">
+                <span class="chat-bubble-text" id="bubbleText3">Start online in India.</span>
+              </div>
+
+              <!-- Bubble for Person 1 (Middle, Girl in purple sweater) -->
+              <div class="chat-bubble bubble-speaker-1 is-active" id="bubbleSpeaker1" data-speaker="1">
+                <span class="chat-bubble-text" id="bubbleText1">Fast Track abroad?</span>
+              </div>
+
+              <!-- Bubble for Person 2 (Right, Boy in green jacket) -->
+              <div class="chat-bubble bubble-speaker-2" id="bubbleSpeaker2" data-speaker="2">
+                <span class="chat-bubble-text" id="bubbleText2">How does it work?</span>
+              </div>
+            </div>
+
+            <!-- Bench Scene Image -->
+            <div class="hero-bench-scene">
+              <img src="assets/images/hero-friends-bench.png" alt="University Yatra students discussing fast track study abroad" class="hero-bench-img" width="1024" height="652" loading="eager" />
+            </div>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#destinations">
-              Explore Universities <i class="fa-solid fa-arrow-right"></i>
+              <span>Explore Universities</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
             <a class="btn" href="#pathways">
-              Compare Study Pathways
+              <span class="btn-text-full">Compare Study Pathways</span>
+              <span class="btn-text-short">Compare Pathways</span>
             </a>
           </div>
           <div class="hero-features">
@@ -142,39 +164,38 @@
       <div class="container">
         <div class="sec-head">
           <span class="sticker pink">STUDY PATHWAYS</span>
-          <h2>Direct Admission or Fast Track?</h2>
+          <h2>Regular Admission or Fast Track?</h2>
           <p class="lead">Choose How You Want to Study Abroad.</p>
         </div>
 
         <!-- Mobile Pathway Buttons (Mobile View Only) -->
         <div class="path-tabs" role="tablist" aria-label="Study Pathways">
           <button type="button" class="path-tab-btn is-active" data-index="0" role="tab" aria-selected="true">
-            Direct Study Abroad
+            Regular
           </button>
           <button type="button" class="path-tab-btn" data-index="1" role="tab" aria-selected="false">
-            Fast Track Study Abroad
+            Fast Track
           </button>
         </div>
 
         <div class="path-slider-wrap">
           <div class="path-grid" id="pathwaysGrid">
-            <!-- Direct Study Abroad -->
+            <!-- Regular Admission -->
             <div class="path path-slide is-active" data-index="0">
               <h3>Begin Your Degree at an Overseas University</h3>
               <ul class="path-check-list">
-                <li><span class="chk-badge">✓</span> <span>Direct admission to an overseas university.</span></li>
+                <li><span class="chk-badge">✓</span> <span>Regular admission to an overseas university.</span></li>
                 <li><span class="chk-badge">✓</span> <span>On-campus study from semester one.</span></li>
                 <li><span class="chk-badge">✓</span> <span>Complete your degree abroad.</span></li>
                 <li><span class="chk-badge">✓</span> <span>Access post-study work visas and global career
                     pathways.</span></li>
               </ul>
               <div class="path-cta-wrap">
-                <img src="assets/images/path-boy-sitter.png" alt="Student with Suitcase" class="path-sitter"
+                <img src="assets/images/path-boy-sitter.png?v=distinct_shoes" alt="Student with Suitcase" class="path-sitter"
                   loading="lazy" />
-                <a href="#destinations" class="btn btn-primary">Explore Direct Programmes</a>
+                <a href="#destinations" class="btn btn-primary">Explore Regular Programmes</a>
               </div>
-              <p class="fine">*Admission requirements, tuition fees and visa approval vary by university, programme and
-                country-specific immigration policies.</p>
+              <p class="fine">*Admission requirements, tuition fees and visa approval vary by university and country.</p>
             </div>
 
             <!-- Fast Track Study Abroad -->
@@ -189,12 +210,11 @@
                     costs.*</span></li>
               </ul>
               <div class="path-cta-wrap">
-                <img src="assets/images/path-girl-sitter.png" alt="Student with Suitcase" class="path-sitter"
+                <img src="assets/images/path-girl-sitter.png?v=distinct_shoes" alt="Student with Suitcase" class="path-sitter"
                   loading="lazy" />
                 <a href="#calculator" class="btn btn-lime">View Fast Track Programmes</a>
               </div>
-              <p class="fine">*Programme duration and credit transfer depend on eligibility and partner university
-                approval. Savings vary by programme.</p>
+              <p class="fine">*Programme duration, credit transfer and savings depend on eligibility and university approval.</p>
             </div>
           </div>
         </div>
@@ -214,8 +234,6 @@
         <div class="sec-head" style="text-align:center;margin-inline:auto;">
           <span class="sticker white">Study Abroad Cost Calculator</span>
           <h2>What Is Your Budget <span class="box">for Studying Abroad?</span></h2>
-          <p class="lead" style="margin-inline:auto;">Tuition fees are only one part of your study abroad expenses.
-            Estimate the overall budget before selecting a university or country.</p>
         </div>
 
         <!-- Step-by-Step Wizard Card -->
@@ -231,13 +249,12 @@
             </div>
           </div>
 
-          <!-- STEP 1: FAST TRACK & DIRECT (ROUTE) -->
+          <!-- STEP 1: FAST TRACK & REGULAR ADMISSION (ROUTE) -->
           <div class="wiz-step-pane" id="wizStep1">
             <div class="wiz-step-title">
               <span class="step-num">1</span>
               <div>
                 <h3>How do you want to study?</h3>
-                <p>Choose your study route: full on-campus abroad or budget-smart Fast Track.</p>
               </div>
             </div>
             <div class="wiz-grid-cards">
@@ -255,9 +272,11 @@
                   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
                     <strong style="font-size:1.06rem;">Fast Track Pathway</strong>
                     <span class="badge-mini"
-                      style="color:#0A1230 !important;background:#C8FF3E !important;font-weight:800 !important;">⚡ SAVE UP TO ₹38+ LAKHS</span>
+                      style="color:#0A1230 !important;background:#C8FF3E !important;font-weight:800 !important;">⚡ SAVE
+                      UP TO ₹38+ LAKHS</span>
                   </div>
-                  <span>Start Year 1 online in India, complete remaining degree at partner university abroad. Replaces 1 full abroad year tuition &amp; living expenses.</span>
+                  <span>Start Year 1 online in India, complete remaining degree at partner university abroad. Replaces 1
+                    full abroad year tuition &amp; living expenses.</span>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="pathway" data-v="direct">
@@ -278,7 +297,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong style="font-size:1.06rem;margin-bottom:4px;display:block;">Direct Study Abroad</strong>
+                  <strong style="font-size:1.06rem;margin-bottom:4px;display:block;">Regular Admission</strong>
                   <span>Apply directly and study 100% on-campus overseas from semester one.</span>
                 </div>
               </button>
@@ -291,7 +310,6 @@
               <span class="step-num">2</span>
               <div>
                 <h3>What degree are you aiming for?</h3>
-                <p>Select your intended qualification level.</p>
               </div>
             </div>
             <div class="wiz-grid-cards">
@@ -364,7 +382,6 @@
               <span class="step-num">3</span>
               <div>
                 <h3>Where do you want to study?</h3>
-                <p>Select your target country from the 8 official logic sheets.</p>
               </div>
             </div>
             <div class="wiz-grid-countries">
@@ -472,21 +489,23 @@
               <span class="step-num">4</span>
               <div>
                 <h3>When do you plan to start?</h3>
-                <p>Select your target timeline to see realistic intake schedules &amp; visa contrast.</p>
               </div>
             </div>
             <div class="wiz-grid-cards">
               <button class="wiz-opt" type="button" data-k="timeline" data-v="immediate">
                 <div class="opt-icon">
                   <svg class="sticker-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 5L24 14H34L26 20L29 30L20 24L11 30L14 20L6 14H16L20 5Z" fill="#C8FF3E" stroke="#0A1230" stroke-width="2.2" stroke-linejoin="round"/>
-                    <circle cx="20" cy="18" r="3.5" fill="#FFDC33" stroke="#0A1230" stroke-width="1.5"/>
+                    <path d="M20 5L24 14H34L26 20L29 30L20 24L11 30L14 20L6 14H16L20 5Z" fill="#C8FF3E" stroke="#0A1230"
+                      stroke-width="2.2" stroke-linejoin="round" />
+                    <circle cx="20" cy="18" r="3.5" fill="#FFDC33" stroke="#0A1230" stroke-width="1.5" />
                   </svg>
                 </div>
                 <div class="opt-body">
                   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
                     <strong style="font-size:1.06rem;">Immediate Start</strong>
-                    <span class="badge-mini" style="color:#0A1230 !important;background:#C8FF3E !important;font-weight:800 !important;">⚡ FASTEST</span>
+                    <span class="badge-mini"
+                      style="color:#0A1230 !important;background:#C8FF3E !important;font-weight:800 !important;">⚡
+                      FASTEST</span>
                   </div>
                   <span>Start Fast Track modules online from India within weeks with zero visa wait time.</span>
                 </div>
@@ -494,46 +513,52 @@
               <button class="wiz-opt on" type="button" data-k="timeline" data-v="fall-2027">
                 <div class="opt-icon">
                   <svg class="sticker-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="7" y="9" width="26" height="24" rx="4" fill="#FFFDF5" stroke="#0A1230" stroke-width="2.2"/>
-                    <path d="M7 16H33" stroke="#0A1230" stroke-width="2"/>
-                    <line x1="13" y1="5" x2="13" y2="10" stroke="#1856F3" stroke-width="2.6" stroke-linecap="round"/>
-                    <line x1="27" y1="5" x2="27" y2="10" stroke="#1856F3" stroke-width="2.6" stroke-linecap="round"/>
-                    <circle cx="15" cy="22" r="2" fill="#C8FF3E" stroke="#0A1230" stroke-width="1.2"/>
-                    <circle cx="21" cy="22" r="2" fill="#FFDC33" stroke="#0A1230" stroke-width="1.2"/>
-                    <circle cx="27" cy="22" r="2" fill="#1856F3" stroke="#0A1230" stroke-width="1.2"/>
-                    <circle cx="15" cy="27" r="2" fill="#0A1230"/>
-                    <circle cx="21" cy="27" r="2" fill="#0A1230"/>
+                    <rect x="7" y="9" width="26" height="24" rx="4" fill="#FFFDF5" stroke="#0A1230"
+                      stroke-width="2.2" />
+                    <path d="M7 16H33" stroke="#0A1230" stroke-width="2" />
+                    <line x1="13" y1="5" x2="13" y2="10" stroke="#1856F3" stroke-width="2.6" stroke-linecap="round" />
+                    <line x1="27" y1="5" x2="27" y2="10" stroke="#1856F3" stroke-width="2.6" stroke-linecap="round" />
+                    <circle cx="15" cy="22" r="2" fill="#C8FF3E" stroke="#0A1230" stroke-width="1.2" />
+                    <circle cx="21" cy="22" r="2" fill="#FFDC33" stroke="#0A1230" stroke-width="1.2" />
+                    <circle cx="27" cy="22" r="2" fill="#1856F3" stroke="#0A1230" stroke-width="1.2" />
+                    <circle cx="15" cy="27" r="2" fill="#0A1230" />
+                    <circle cx="21" cy="27" r="2" fill="#0A1230" />
                   </svg>
                 </div>
                 <div class="opt-body">
                   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
                     <strong style="font-size:1.06rem;">Fall 2027 (Aug – Oct)</strong>
-                    <span class="badge-mini" style="color:#fff !important;background:#1856F3 !important;font-weight:800 !important;">MAIN INTAKE</span>
+                    <span class="badge-mini"
+                      style="color:#fff !important;background:#1856F3 !important;font-weight:800 !important;">MAIN
+                      INTAKE</span>
                   </div>
-                  <span>Primary global intake with maximum university seats and scholarship eligibility (~8–10 months prep).</span>
+                  <span>Primary global intake with maximum university seats and scholarship eligibility (~8–10 months
+                    prep).</span>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="timeline" data-v="spring-2028">
                 <div class="opt-icon">
                   <svg class="sticker-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="7" y="9" width="26" height="24" rx="4" fill="#FFFDF5" stroke="#0A1230" stroke-width="2.2"/>
-                    <path d="M7 16H33" stroke="#0A1230" stroke-width="2"/>
-                    <line x1="13" y1="5" x2="13" y2="10" stroke="#0A1230" stroke-width="2.6" stroke-linecap="round"/>
-                    <line x1="27" y1="5" x2="27" y2="10" stroke="#0A1230" stroke-width="2.6" stroke-linecap="round"/>
-                    <circle cx="20" cy="24" r="3" fill="#C8FF3E" stroke="#0A1230" stroke-width="1.5"/>
+                    <rect x="7" y="9" width="26" height="24" rx="4" fill="#FFFDF5" stroke="#0A1230"
+                      stroke-width="2.2" />
+                    <path d="M7 16H33" stroke="#0A1230" stroke-width="2" />
+                    <line x1="13" y1="5" x2="13" y2="10" stroke="#0A1230" stroke-width="2.6" stroke-linecap="round" />
+                    <line x1="27" y1="5" x2="27" y2="10" stroke="#0A1230" stroke-width="2.6" stroke-linecap="round" />
+                    <circle cx="20" cy="24" r="3" fill="#C8FF3E" stroke="#0A1230" stroke-width="1.5" />
                   </svg>
                 </div>
                 <div class="opt-body">
                   <strong style="font-size:1.06rem;margin-bottom:4px;display:block;">Spring 2028 (Jan – Mar)</strong>
-                  <span>Secondary international intake with streamlined visa processing and moderate class sizes (~12–14 months prep).</span>
+                  <span>Secondary international intake with streamlined visa processing and moderate class sizes (~12–14
+                    months prep).</span>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="timeline" data-v="later">
                 <div class="opt-icon">
                   <svg class="sticker-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="14" fill="#FFFDF5" stroke="#0A1230" stroke-width="2.2"/>
-                    <path d="M20 10V20L27 24" stroke="#1856F3" stroke-width="2.4" stroke-linecap="round"/>
-                    <circle cx="20" cy="20" r="2.5" fill="#FFDC33" stroke="#0A1230" stroke-width="1.2"/>
+                    <circle cx="20" cy="20" r="14" fill="#FFFDF5" stroke="#0A1230" stroke-width="2.2" />
+                    <path d="M20 10V20L27 24" stroke="#1856F3" stroke-width="2.4" stroke-linecap="round" />
+                    <circle cx="20" cy="20" r="2.5" fill="#FFDC33" stroke="#0A1230" stroke-width="1.2" />
                   </svg>
                 </div>
                 <div class="opt-body">
@@ -562,7 +587,6 @@
                   </span>
                   <span id="rTitleText">Canada · Master's Programme</span>
                 </h3>
-                <p class="r-subtitle" style="font-size:0.78rem;color:#B6C3E6;margin:4px 0 0;line-height:1.35;font-weight:500;">University-wise fees &bull; Living expenses &bull; Visa proof</p>
               </div>
 
               <!-- Locked Report Teaser Card (Reference Image 1) -->
@@ -594,30 +618,35 @@
                   <!-- 3 Ultra-Sleek Pill Rows with ACTUAL Blurred Figures Inside Document (Image 2 match) -->
                   <div class="locked-preview-bars" id="lockedCostsTable">
                     <div class="locked-bar-row">
-                      <span class="bar-label"><i class="fa-solid fa-graduation-cap"></i> Direct Study Total</span>
+                      <span class="bar-label"><i class="fa-solid fa-graduation-cap"></i> Regular Admission Total</span>
                       <div class="bar-val-wrap">
                         <span class="bar-val-blur" id="blurDirectTotal">≈ ₹65.2 Lakhs</span>
                         <i class="fa-solid fa-lock"></i>
                       </div>
                     </div>
                     <div class="locked-bar-row">
-                      <span class="bar-label"><i class="fa-solid fa-bolt" style="color:var(--lime);"></i> Fast Track Total</span>
+                      <span class="bar-label"><i class="fa-solid fa-bolt" style="color:var(--lime);"></i> Fast Track
+                        Total</span>
                       <div class="bar-val-wrap">
                         <span class="bar-val-blur" id="blurFtTotal">≈ ₹55.0 Lakhs</span>
                         <i class="fa-solid fa-lock"></i>
                       </div>
                     </div>
                     <div class="locked-bar-row">
-                      <span class="bar-label"><i class="fa-solid fa-piggy-bank" style="color:var(--lime);"></i> You Save in Rupees</span>
+                      <span class="bar-label"><i class="fa-solid fa-piggy-bank" style="color:var(--lime);"></i> You Save
+                        in Rupees</span>
                       <div class="bar-val-wrap">
-                        <span class="bar-val-blur" id="blurSavings" style="color:var(--lime);font-weight:800;">≈ ₹10.2 Lakhs</span>
+                        <span class="bar-val-blur" id="blurSavings" style="color:var(--lime);font-weight:800;">≈ ₹10.2
+                          Lakhs</span>
                         <i class="fa-solid fa-lock"></i>
                       </div>
                     </div>
                   </div>
-                  <div style="margin-top:8px;padding:8px 12px;background:rgba(200,255,62,0.08);border:1px dashed rgba(200,255,62,0.3);border-radius:8px;font-size:0.75rem;color:#DCE5FA;display:flex;align-items:center;gap:6px;">
+                  <div
+                    style="margin-top:8px;padding:8px 12px;background:rgba(200,255,62,0.08);border:1px dashed rgba(200,255,62,0.3);border-radius:8px;font-size:0.75rem;color:#DCE5FA;display:flex;align-items:center;gap:6px;">
                     <i class="fa-solid fa-award" style="color:var(--lime);"></i>
-                    <span id="calcScholarshipNote">Merit Note: You may get up to 30% additional scholarship / tuition waiver.</span>
+                    <span id="calcScholarshipNote">Merit Note: You may get up to 30% additional scholarship / tuition
+                      waiver.</span>
                   </div>
                 </div>
               </div>
@@ -662,13 +691,18 @@
 
               <div id="calcQuickSuccess"
                 style="display:none;background:rgba(200,255,62,0.15);border:2px solid var(--lime);border-radius:12px;padding:14px;text-align:center;margin-top:12px;">
-                <strong style="color:var(--lime);display:block;margin-bottom:4px;font-size:1rem;">✓ Guide Unlocked &amp;
-                  Downloaded!</strong>
-                <p style="font-size:0.84rem;color:#DCE5FA;margin:0 0 10px;">A senior counsellor will connect with you on
-                  WhatsApp shortly.</p>
-                <button type="button" id="calcResetBtn" class="btn" style="background:#FFFDF5;color:#0A1230;border:2px solid #0A1230;box-shadow:2px 2px 0 #0A1230;font-size:0.82rem;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;">
-                  <i class="fa-solid fa-rotate-left"></i> Start New Calculation
-                </button>
+                <strong style="color:var(--lime);display:block;margin-bottom:4px;font-size:1rem;">✓ <span id="successCountryName">Country</span> Cost Guide Unlocked &amp; Downloaded!</strong>
+                <p style="font-size:0.84rem;color:#DCE5FA;margin:0 0 12px;">A senior counsellor will connect with you on WhatsApp shortly.</p>
+                <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+                  <button type="button" id="calcDownloadAgainBtn" class="btn btn-lime"
+                    style="font-size:0.82rem;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;">
+                    <i class="fa-solid fa-download"></i> Download Again
+                  </button>
+                  <button type="button" id="calcResetBtn" class="btn"
+                    style="background:#FFFDF5;color:#0A1230;border:2px solid #0A1230;box-shadow:2px 2px 0 #0A1230;font-size:0.82rem;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;">
+                    <i class="fa-solid fa-rotate-left"></i> Start New Calculation
+                  </button>
+                </div>
               </div>
 
               <p class="disc"
@@ -832,9 +866,10 @@
     <section class="section" id="support">
       <div class="container">
         <div class="sec-head">
-          <span class="sticker sun">360° Support</span>
+          <span class="sticker">Your Journey, Simplified</span>
           <h2>360° Student Support</h2>
-          <p>Comprehensive guidance at every stage of your study abroad journey, from university admissions and IELTS preparation to student visas, post-study work permits and permanent residency.</p>
+          <p>Comprehensive guidance at every stage of your study abroad journey, from university admissions and IELTS
+            preparation to student visas, post-study work permits and permanent residency.</p>
         </div>
 
         <div class="support-grid">
@@ -842,10 +877,11 @@
           <div class="sc">
             <div class="sc-num">01</div>
             <h3>Admissions to Top Universities</h3>
-            <p>We help you shortlist universities, identify suitable courses and complete the admission process to achieve your academic goals.</p>
+            <p>We help you shortlist universities, identify suitable courses and complete the admission process to
+              achieve your academic goals.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-top-ranked.png"
-                alt="3D Clay Admissions to Top Universities Scene" loading="lazy" />
+              <img src="assets/images/clay-scene-top-ranked.png" alt="3D Clay Admissions to Top Universities Scene"
+                loading="lazy" />
             </div>
           </div>
 
@@ -853,7 +889,8 @@
           <div class="sc">
             <div class="sc-num">02</div>
             <h3>Free IELTS Training</h3>
-            <p>We provide IELTS training support to help you improve your English proficiency, build confidence and prepare for your language test.</p>
+            <p>We provide IELTS training support to help you improve your English proficiency, build confidence and
+              prepare for your language test.</p>
             <div class="sc-clay-scene">
               <img src="assets/images/clay-scene-ielts-training.png"
                 alt="3D Clay IELTS Training & English Preparation Scene" loading="lazy" />
@@ -864,10 +901,11 @@
           <div class="sc">
             <div class="sc-num">03</div>
             <h3>Complete Document Support</h3>
-            <p>We assist you in preparing essential documents, including Statements of Purpose (SOP), Letters of Recommendation (LOR) and other application documents.</p>
+            <p>We assist you in preparing essential documents, including Statements of Purpose (SOP), Letters of
+              Recommendation (LOR) and other application documents.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-document-support.png"
-                alt="3D Clay Complete Document Support Scene" loading="lazy" />
+              <img src="assets/images/clay-scene-document-support.png" alt="3D Clay Complete Document Support Scene"
+                loading="lazy" />
             </div>
           </div>
 
@@ -875,10 +913,11 @@
           <div class="sc">
             <div class="sc-num">04</div>
             <h3>Student Visa Assistance – No Charge</h3>
-            <p>Our team provides visa guidance, documentation support and application assistance to make your visa process smooth and hassle-free, at no additional charge.</p>
+            <p>Our team provides visa guidance, documentation support and application assistance to make your visa
+              process smooth and hassle-free, at no additional charge.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-student-visa.png"
-                alt="3D Clay Student Visa Assistance Scene" loading="lazy" />
+              <img src="assets/images/clay-scene-student-visa.png" alt="3D Clay Student Visa Assistance Scene"
+                loading="lazy" />
             </div>
           </div>
 
@@ -886,10 +925,11 @@
           <div class="sc">
             <div class="sc-num">05</div>
             <h3>Post-Study Work Permit Assistance</h3>
-            <p>We guide you through work permit documentation, application preparation and submission to help you explore career opportunities after graduation.</p>
+            <p>We guide you through work permit documentation, application preparation and submission to help you
+              explore career opportunities after graduation.</p>
             <div class="sc-clay-scene">
-              <img src="assets/images/clay-scene-work-permit.png"
-                alt="3D Clay Post-Study Work Permit Assistance Scene" loading="lazy" />
+              <img src="assets/images/clay-scene-work-permit.png" alt="3D Clay Post-Study Work Permit Assistance Scene"
+                loading="lazy" />
             </div>
           </div>
 
@@ -897,7 +937,8 @@
           <div class="sc">
             <div class="sc-num">06</div>
             <h3>Permanent Residency (PR) Guidance</h3>
-            <p>We provide country-specific PR guidance, eligibility assessments and application support to help you plan your long-term settlement abroad.</p>
+            <p>We provide country-specific PR guidance, eligibility assessments and application support to help you plan
+              your long-term settlement abroad.</p>
             <div class="sc-clay-scene">
               <img src="assets/images/clay-scene-permanent-residency.png"
                 alt="3D Clay Permanent Residency Guidance Scene" loading="lazy" />
@@ -917,37 +958,46 @@
         <div class="sec-head">
           <span class="sticker sun">Post-Study Opportunities</span>
           <h2>What Can You Do <span class="hl">After Graduating Abroad?</span></h2>
-          <p>Explore global career pathways after graduation, from employment and further studies to post-study work permits and long-term settlement.</p>
+          <p>Explore global career pathways after graduation, from employment and further studies to post-study work
+            permits and long-term settlement.</p>
         </div>
 
         <div class="inside">
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-01-placement.png" alt="01" class="ic-num-img" width="754" height="466" loading="lazy" />
+              <img src="assets/images/post-study-01-placement.png" alt="01" class="ic-num-img" width="754" height="466"
+                loading="lazy" />
             </div>
             <h3>Internship &amp; University Placement</h3>
-            <p>Explore internship opportunities and university placement programs to gain practical experience and build your professional career.</p>
+            <p>Explore internship opportunities and university placement programs to gain practical experience and build
+              your professional career.</p>
           </div>
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-02-studies.png" alt="02" class="ic-num-img" width="662" height="698" loading="lazy" />
+              <img src="assets/images/post-study-02-studies.png" alt="02" class="ic-num-img" width="662" height="698"
+                loading="lazy" />
             </div>
             <h3>Further Studies &amp; Specialisation</h3>
-            <p>Pursue Master's degrees or specialised doctoral research programs to advance your academic knowledge and expertise.</p>
+            <p>Pursue Master's degrees or specialised doctoral research programs to advance your academic knowledge and
+              expertise.</p>
           </div>
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-03-permit.png" alt="03" class="ic-num-img" width="985" height="444" loading="lazy" />
+              <img src="assets/images/post-study-03-permit.png" alt="03" class="ic-num-img" width="985" height="444"
+                loading="lazy" />
             </div>
             <h3>Post-Study Work Permit</h3>
-            <p>Access legal post-study work opportunities, such as the UK Graduate Visa, Canada PGWP or Australia PSW, to gain international work experience.</p>
+            <p>Access legal post-study work opportunities, such as the UK Graduate Visa, Canada PGWP or Australia PSW,
+              to gain international work experience.</p>
           </div>
           <div class="ic">
             <div class="ic-num-wrap">
-              <img src="assets/images/post-study-04-employment.png" alt="04" class="ic-num-img" width="1073" height="432" loading="lazy" />
+              <img src="assets/images/post-study-04-employment.png" alt="04" class="ic-num-img" width="1073"
+                height="432" loading="lazy" />
             </div>
             <h3>Graduate Employment Opportunities</h3>
-            <p>Explore campus recruitment, industry internships and professional networking opportunities with multinational employers.</p>
+            <p>Explore campus recruitment, industry internships and professional networking opportunities with
+              multinational employers.</p>
           </div>
         </div>
       </div>
@@ -1053,8 +1103,8 @@
               background and the university's admission criteria.</p>
           </details>
           <details>
-            <summary>3. What is the difference between Direct and Fast Track?</summary>
-            <p>Direct Study starts at an overseas university from the first semester. Selected Fast Track programmes
+            <summary>3. What is the difference between Regular and Fast Track Admission?</summary>
+            <p>Regular Admission starts at an overseas university from the first semester. Selected Fast Track programmes
               begin online in India before continuing at a partner university abroad, subject to credit-transfer
               approval.</p>
           </details>
@@ -1138,17 +1188,32 @@
 
         <!-- CONTACT TRIO -->
         <div class="contact-trio">
-          <div class="cc">
-            <small>Call / WhatsApp</small>
-            <a href="https://wa.me/919217368750" target="_blank" rel="noopener">+91 92173 68750</a>
+          <div class="cc cc-wa">
+            <div class="cc-content">
+              <small>WhatsApp</small>
+              <a href="https://wa.me/919217368750" target="_blank" rel="noopener">+91 92173 68750</a>
+            </div>
+            <div class="cc-clay-scene">
+              <img src="assets/images/clay-contact-whatsapp.png?v=clay_clean" alt="3D Clay WhatsApp Consultation" loading="lazy" />
+            </div>
           </div>
-          <div class="cc">
-            <small>Email</small>
-            <a href="mailto:info@universityyatra.com">info@universityyatra.com</a>
+          <div class="cc cc-email">
+            <div class="cc-content">
+              <small>Email</small>
+              <a href="mailto:info@universityyatra.com">info@universityyatra.com</a>
+            </div>
+            <div class="cc-clay-scene">
+              <img src="assets/images/clay-contact-email.png?v=clay_clean" alt="3D Clay Email Support" loading="lazy" />
+            </div>
           </div>
-          <div class="cc">
-            <small>Office Address</small>
-            <span>Unit 917, 9th Floor, Supernova Astralis, Sector 94, Noida, UP 201301</span>
+          <div class="cc cc-address">
+            <div class="cc-content">
+              <small>Office Address</small>
+              <span>Unit 917, 9th Floor, Supernova Astralis, Sector 94, Noida, UP 201301</span>
+            </div>
+            <div class="cc-clay-scene">
+              <img src="assets/images/clay-contact-office.png?v=clay_clean" alt="3D Clay Office Location" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
@@ -1180,8 +1245,8 @@
         <div class="ssf-col" style="--c: 0;">
           <h3 class="ssf-tag">Study Pathways</h3>
           <ul class="ssf-big">
-            <li class="ssf-line" style="--i: 0;"><a href="#pathways">Direct Study Abroad</a></li>
-            <li class="ssf-line" style="--i: 1;"><a href="#pathways">Fast Track Pathway (Save 45%)</a></li>
+            <li class="ssf-line" style="--i: 0;"><a href="#pathways">Regular Admission</a></li>
+            <li class="ssf-line" style="--i: 1;"><a href="#pathways">Fast Track Pathway</a></li>
             <li class="ssf-line" style="--i: 2;"><a href="#calculator">Study Cost Calculator</a></li>
           </ul>
         </div>
@@ -1190,9 +1255,9 @@
         <div class="ssf-col" style="--c: 1;">
           <h3 class="ssf-tag">Top Destinations</h3>
           <ul class="ssf-big">
-            <li class="ssf-line" style="--i: 0;"><a href="#destinations">Germany (Zero Tuition)</a></li>
-            <li class="ssf-line" style="--i: 1;"><a href="#destinations">Canada (3-Year PGWP)</a></li>
-            <li class="ssf-line" style="--i: 2;"><a href="#destinations">United Kingdom (1-Yr Masters)</a></li>
+            <li class="ssf-line" style="--i: 0;"><a href="#destinations">Germany</a></li>
+            <li class="ssf-line" style="--i: 1;"><a href="#destinations">Canada</a></li>
+            <li class="ssf-line" style="--i: 2;"><a href="#destinations">United Kingdom</a></li>
             <li class="ssf-line" style="--i: 3;"><a href="#destinations">Australia &amp; United States</a></li>
           </ul>
           <a class="ssf-map" href="#destinations">
@@ -1238,10 +1303,13 @@
         <div class="ssf-stage-in">
           <!-- Stealth Ambient Motion Video (Seamless Dual-Buffer Crossfading Loop) -->
           <div class="ssf-video-backdrop" aria-hidden="true">
-            <video id="ssfVideoA" class="ssf-video-media is-active" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
+            <video id="ssfVideoA" class="ssf-video-media is-active" autoplay loop muted playsinline
+              disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"
+              oncontextmenu="return false;">
               <source src="assets/footer-video.mp4" type="video/mp4">
             </video>
-            <video id="ssfVideoB" class="ssf-video-media" muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
+            <video id="ssfVideoB" class="ssf-video-media" muted playsinline disablepictureinpicture
+              controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
               <source src="assets/footer-video.mp4" type="video/mp4">
             </video>
             <div class="ssf-video-eraser" aria-hidden="true"></div>
