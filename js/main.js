@@ -230,11 +230,11 @@
       calculateResults();
     }
 
-    // Calculator Must Be once view to every transition of screen (Continue / Prev)
+    // Calculator smooth scroll alignment on step transition
     const cardEl = $('calcWizardCard');
-    if (cardEl && currentStep > 1) {
+    if (cardEl) {
       const rect = cardEl.getBoundingClientRect();
-      if (rect.top < 50 || rect.top > 140) {
+      if (rect.top < 50 || rect.top > 160) {
         cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
@@ -339,6 +339,15 @@
           currentStep--;
           updateStepView();
         }
+      });
+    }
+
+    // Top Edit Choices Button on Result View
+    const editTopBtn = $('wizEditChoicesTopBtn');
+    if (editTopBtn) {
+      editTopBtn.addEventListener('click', () => {
+        currentStep = 4;
+        updateStepView();
       });
     }
 

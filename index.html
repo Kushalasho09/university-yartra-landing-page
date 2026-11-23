@@ -590,9 +590,9 @@
           <!-- STEP 5: CALCULATED RESULT & GUIDE GATE (Compact, High-Converting, Locked Pricing) -->
           <div class="wiz-step-pane" id="wizStepResult" style="display:none;">
             <div class="wiz-result-box compact-result-box">
-              <div class="wiz-result-header" style="margin-bottom:12px;">
+              <div class="wiz-result-header" style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;">
                 <h3 id="rTitle" class="r-title"
-                  style="color:var(--lime);font-size:1.18rem;font-weight:800;margin:0;display:flex;align-items:center;gap:10px;">
+                  style="color:var(--lime);font-size:1.06rem;font-weight:800;margin:0;display:flex;align-items:center;gap:8px;">
                   <span id="rCountryFlag" class="flag-badge">
                     <svg class="flag-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                       <rect width="32" height="32" fill="#FFFDF5" />
@@ -605,6 +605,9 @@
                   </span>
                   <span id="rTitleText">Canada · Master's Programme</span>
                 </h3>
+                <button type="button" id="wizEditChoicesTopBtn" class="wiz-edit-top-btn" title="Edit your choices">
+                  <i class="fa-solid fa-arrow-left"></i> <span>Edit Choices</span>
+                </button>
               </div>
 
               <!-- SPECIAL CALLOUT WHEN "OTHER" COUNTRY IS SELECTED (From Official Doc) -->
@@ -628,28 +631,27 @@
 
               <!-- Locked Report Teaser Card (Reference Image 1) -->
               <div class="locked-report-card">
-                <div class="locked-report-head" style="justify-content:flex-end;">
-                  <span class="locked-badge-free">FREE PDF</span>
-                </div>
-
                 <div class="locked-doc-preview">
                   <div class="locked-doc-header">
-                    <div class="locked-doc-icon">
-                      <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
-                    </div>
-                    <div class="locked-doc-details">
-                      <div class="locked-doc-title">
-                        <span id="lockedCountryDocName">Canada Complete Cost Guide</span>
-                        <svg class="locked-padlock-svg" viewBox="0 0 20 20" fill="none"
-                          xmlns="http://www.w3.org/2000/svg" title="Enter details below to unlock full report">
-                          <path d="M6 8V6C6 3.79 7.79 2 10 2C12.21 2 14 3.79 14 6V8" stroke="#C8FF3E" stroke-width="2"
-                            stroke-linecap="round" />
-                          <rect x="4" y="8" width="12" height="10" rx="2" fill="#C8FF3E" stroke="#0A1230"
-                            stroke-width="1.8" />
-                          <circle cx="10" cy="13" r="1.5" fill="#0A1230" />
-                        </svg>
+                    <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+                      <div class="locked-doc-icon">
+                        <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                      </div>
+                      <div class="locked-doc-details">
+                        <div class="locked-doc-title">
+                          <span id="lockedCountryDocName">Canada Complete Cost Guide</span>
+                          <svg class="locked-padlock-svg" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" title="Enter details below to unlock full report">
+                            <path d="M6 8V6C6 3.79 7.79 2 10 2C12.21 2 14 3.79 14 6V8" stroke="#C8FF3E" stroke-width="2"
+                              stroke-linecap="round" />
+                            <rect x="4" y="8" width="12" height="10" rx="2" fill="#C8FF3E" stroke="#0A1230"
+                              stroke-width="1.8" />
+                            <circle cx="10" cy="13" r="1.5" fill="#0A1230" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
+                    <span class="locked-badge-free">FREE PDF</span>
                   </div>
 
                   <!-- 3 Ultra-Sleek Pill Rows with ACTUAL Blurred Figures Inside Document (Image 2 match) -->
@@ -680,7 +682,7 @@
                     </div>
                   </div>
                   <div
-                    style="margin-top:8px;padding:8px 12px;background:rgba(200,255,62,0.08);border:1px dashed rgba(200,255,62,0.3);border-radius:8px;font-size:0.75rem;color:#DCE5FA;display:flex;align-items:center;gap:6px;">
+                    style="margin-top:6px;padding:6px 10px;background:rgba(200,255,62,0.08);border:1px dashed rgba(200,255,62,0.3);border-radius:8px;font-size:0.72rem;color:#DCE5FA;display:flex;align-items:center;gap:6px;">
                     <i class="fa-solid fa-award" style="color:var(--lime);"></i>
                     <span id="calcScholarshipNote">Merit Note: You may get up to 30% additional scholarship / tuition
                       waiver.</span>
@@ -700,13 +702,13 @@
                   <label class="field-label" for="calc_phone">WhatsApp Mobile Number</label>
                   <div class="phone-group">
                     <select class="phone-code-select" id="calc_phone_code" name="phone_code" aria-label="Country Code">
-                      <option value="+91" selected>+91 (India)</option>
-                      <option value="+1">+1 (USA/CA)</option>
+                      <option value="+91" selected>+91 (IN)</option>
+                      <option value="+1">+1 (US)</option>
                       <option value="+44">+44 (UK)</option>
-                      <option value="+61">+61 (Australia)</option>
-                      <option value="+49">+49 (Germany)</option>
+                      <option value="+61">+61 (AU)</option>
+                      <option value="+49">+49 (DE)</option>
                       <option value="+971">+971 (UAE)</option>
-                      <option value="+65">+65 (Singapore)</option>
+                      <option value="+65">+65 (SG)</option>
                     </select>
                     <input class="fi-phone" name="phone" id="calc_phone" type="tel" inputmode="numeric"
                       pattern="[0-9]{7,12}" maxlength="10" placeholder="10-digit mobile number" required
