@@ -342,15 +342,6 @@
       });
     }
 
-    // Top Edit Choices Button on Result View
-    const editTopBtn = $('wizEditChoicesTopBtn');
-    if (editTopBtn) {
-      editTopBtn.addEventListener('click', () => {
-        currentStep = 4;
-        updateStepView();
-      });
-    }
-
     // Continue / Next Button
     const nextBtn = $('wizNextBtn');
     if (nextBtn) {
@@ -520,9 +511,18 @@
       const country = String(fd.get('country') || '').trim();
       const course = String(fd.get('course') || '').trim();
 
-      if (!/^[6-9][0-9]{9}$/.test(phone)) {
-        alert('Please enter a valid 10-digit Indian WhatsApp number');
-        return;
+      const countryCode = String(fd.get('country_code') || '+91').trim();
+
+      if (countryCode === '+91') {
+        if (!/^[6-9][0-9]{9}$/.test(phone)) {
+          alert('Please enter a valid 10-digit Indian WhatsApp number');
+          return;
+        }
+      } else {
+        if (!/^[0-9]{7,15}$/.test(phone)) {
+          alert('Please enter a valid phone number');
+          return;
+        }
       }
 
       const btn = $('enquirySubmitBtn');
@@ -536,7 +536,7 @@
         ok.style.display = 'block';
         const sub = ok.querySelector('p');
         if (sub) {
-          sub.innerHTML = `Your enquiry has been received. Our team will contact you at <strong>+91 ${phone}</strong> shortly.`;
+          sub.innerHTML = `Your enquiry has been received. Our team will contact you at <strong>${countryCode} ${phone}</strong> shortly.`;
         }
       }, 500);
     });
@@ -929,101 +929,247 @@
   }
 
   /* ==========================================================================
-     TESTIMONIALS INTERACTIVE STUDENT JOURNEYS CONTROLLER
+     REEL-STYLE STUDENT JOURNEY MODAL CONTROLLER (OPTION 1)
      ========================================================================== */
-  function initTestimonialsStories() {
-    const stories = {
-      unnati: [
-        {k:'Starting point',t:'Could studying in Canada be financially possible?',d:'Unnati wanted to pursue a Master’s in Canada, but funding was a major concern. We reviewed her academic profile, finances and goals to understand the options.',s:'✦',img:'assets/images/consultation-unnati.jpg',alt:'Unnati Parekh online counselling consultation with University Yatra'},
-        {k:'Education loan',t:'Her education loan was approved in 24 hours.',d:'We identified a suitable financing option and guided her application. The loan was approved within 24 hours with basic documentation; no additional supporting documents were required in her case.',s:'₹',img:'assets/images/unnati-milestone-02-loan.jpg?v=clean_hd1',alt:'3D clay diorama of fast 24-hour education loan approval with golden coins and certificate'},
-        {k:'University admission',t:'She secured admission to Trent University.',d:'Unnati received an offer for the Master’s in Instrumental Chemical Analysis at Trent University, Ontario.',s:'⌂',img:'assets/images/unnati-milestone-03-admission.jpg?v=clean_hd1',alt:'3D clay diorama of Canadian university campus and admission acceptance offer'},
-        {k:'Scholarship',t:'A university scholarship followed.',d:'After securing admission, Unnati also received a scholarship from Trent University, adding financial support to her studies.',s:'★',img:'assets/images/unnati-milestone-04-scholarship.jpg?v=clean_hd1',alt:'3D clay diorama of university scholarship golden trophy and merit award'},
-        {k:'Co-op selection',t:'Selected for a Health Canada co-op.',d:'Unnati was selected for a co-op opportunity at Health Canada, Government of Canada, giving her the opportunity to gain professional exposure in her field.',s:'＋',img:'assets/images/unnati-milestone-05-coop.jpg?v=clean_hd1',alt:'3D clay diorama of chemistry and health science laboratory research workbench'}
-      ],
-      tauheed: [
-        {k:'Academic eligibility',t:'Could a three-year degree lead to a Master’s?',d:'Tauheed wanted to study in Canada, but his three-year Bachelor’s degree made university selection more complex. We reviewed his qualification and researched suitable pathways.',s:'◎',img:'assets/images/consultation-tauheed.jpg',alt:'Tauheed Khan online academic counselling consultation with University Yatra'},
-        {k:'University selection',t:'We identified a pathway at Algoma University.',d:'After evaluating his academic background, we found a Master’s pathway where his existing qualification could be considered for admission.',s:'⌂',img:'assets/images/tauheed-milestone-02-pathway.jpg?v=clean_hd1',alt:'3D clay diorama of Algoma University collegiate campus and winding academic pathway'},
-        {k:'Education loan',t:'₹45 lakh sanctioned without a property mortgage.',d:'We assessed Tauheed’s financial profile and guided the loan application. His ₹45 lakh education loan was sanctioned without property mortgage collateral.',s:'₹',img:'assets/images/tauheed-milestone-03-loan.jpg?v=clean_hd1',alt:'3D clay diorama of ₹45 lakh education loan sanction document without mortgage'},
-        {k:'Location planning',t:'The university location was part of the decision.',d:'Alongside academic fit, we considered Sault Ste. Marie’s regional context, local economic conditions and potential PNP pathways before finalising Algoma University.',s:'⌖',img:'assets/images/tauheed-milestone-04-location.jpg?v=clean_hd1',alt:'3D clay diorama of Sault Ste. Marie regional Ontario landscape with suspension bridge and compass'},
-        {k:'Next step',t:'His admission and financing were in place.',d:'With a suitable Master’s admission and his education loan sanctioned, Tauheed was able to begin his academic journey in Canada.',s:'✓',img:'assets/images/tauheed-milestone-05-journey.jpg?v=clean_hd1',alt:'3D clay diorama of Canadian student arrival, passport, flight and Toronto city skyline'}
-      ]
-    };
+  function initStudentJourneyReelModal() {
+    const modal = document.getElementById('uyReelModal');
+    if (!modal) return;
 
-    const section = document.querySelector('#testimonials, #uy-testimonials');
-    if (!section) return;
+    const backdrop = document.getElementById('uyReelBackdrop');
+    const outerClose = document.getElementById('uyReelCloseBtn');
+    const innerClose = document.getElementById('uyReelInnerClose');
+    const intro = document.getElementById('uyReelIntro');
+    const introTitle = document.getElementById('uyReelIntroTitle');
+    const loaderBar = document.getElementById('uyReelLoaderBar');
+    const video = document.getElementById('uyReelVideo');
+    const centerPlay = document.getElementById('uyReelCenterPlay');
+    const playPauseBtn = document.getElementById('uyReelPlayPause');
+    const muteBtn = document.getElementById('uyReelMute');
+    const track = document.getElementById('uyReelTrack');
+    const trackFill = document.getElementById('uyReelTrackFill');
+    const trackKnob = document.getElementById('uyReelTrackKnob');
+    const timeText = document.getElementById('uyReelTime');
+    const tag = document.getElementById('uyReelTag');
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    section.querySelectorAll('[data-story]').forEach(card => {
-      const key = card.dataset.story, steps = stories[key];
-      if (!steps || !card.querySelector('[data-dots]')) return;
-      let index = 0, timer = null;
-      const image = card.querySelector('[data-image]'),
-            title = card.querySelector('[data-title]'),
-            desc = card.querySelector('[data-description]'),
-            kicker = card.querySelector('[data-kicker]'),
-            symbol = card.querySelector('[data-symbol]'),
-            count = card.querySelector('[data-count]'),
-            dots = card.querySelector('[data-dots]');
+    const cards = document.querySelectorAll('.uy-card[data-story-video]');
+    let introTimer = null;
 
-      if (dots && dots.children.length === 0) {
-        steps.forEach((step, i) => {
-          const b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'uy-dot';
-          b.setAttribute('aria-label', `Go to milestone ${i + 1}`);
-          b.addEventListener('click', () => { show(i); restart(); });
-          dots.appendChild(b);
+    function formatTime(secs) {
+      if (isNaN(secs) || secs < 0) return '0:00';
+      const m = Math.floor(secs / 60);
+      const s = Math.floor(secs % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function openModal(name, videoSrc) {
+      // 1. Set titles and video source
+      if (introTitle) {
+        introTitle.innerHTML = `${name}'s Story<br><span>Begins Like This...</span>`;
+      }
+      if (tag) {
+        tag.innerHTML = `<i class="fa-solid fa-circle-play"></i> ${name}'s Journey`;
+      }
+
+      if (video) {
+        video.src = videoSrc;
+        video.load();
+      }
+
+      // 2. Reset intro state
+      if (intro) {
+        intro.classList.remove('is-hidden');
+        intro.classList.add('is-animating');
+      }
+      if (loaderBar) {
+        loaderBar.style.animation = 'none';
+        void loaderBar.offsetHeight;
+        loaderBar.style.animation = '';
+      }
+
+      // 3. Reset video controls state
+      updatePlayPauseState(false);
+      if (trackFill) trackFill.style.width = '0%';
+      if (trackKnob) trackKnob.style.left = '0%';
+      if (timeText) timeText.textContent = '0:00 / 0:00';
+
+      // 4. Open modal
+      modal.classList.add('is-active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('uy-modal-open');
+
+      if (introTimer) clearTimeout(introTimer);
+
+      // 5. After intro animation (~1.4s), transition to video playback
+      introTimer = setTimeout(() => {
+        if (intro) {
+          intro.classList.add('is-hidden');
+          intro.classList.remove('is-animating');
+        }
+        if (video) {
+          video.play().then(() => {
+            updatePlayPauseState(true);
+          }).catch(err => {
+            console.warn('Auto-play prevented:', err);
+            updatePlayPauseState(false);
+            if (centerPlay) centerPlay.classList.add('is-visible');
+          });
+        }
+      }, 1450);
+    }
+
+    function closeModal() {
+      if (introTimer) clearTimeout(introTimer);
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+        video.src = '';
+      }
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('uy-modal-open');
+      if (intro) {
+        intro.classList.remove('is-hidden', 'is-animating');
+      }
+      updatePlayPauseState(false);
+    }
+
+    function updatePlayPauseState(isPlaying) {
+      if (playPauseBtn) {
+        const icon = playPauseBtn.querySelector('i');
+        if (icon) {
+          icon.className = isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+        }
+      }
+      if (centerPlay) {
+        const centerIcon = centerPlay.querySelector('i');
+        if (isPlaying) {
+          centerPlay.classList.remove('is-visible');
+          if (centerIcon) centerIcon.className = 'fa-solid fa-pause';
+        } else {
+          centerPlay.classList.add('is-visible');
+          if (centerIcon) centerIcon.className = 'fa-solid fa-play';
+        }
+      }
+    }
+
+    function togglePlayPause() {
+      if (!video) return;
+      if (video.paused || video.ended) {
+        if (video.ended) video.currentTime = 0;
+        video.play().then(() => updatePlayPauseState(true)).catch(err => console.warn(err));
+      } else {
+        video.pause();
+        updatePlayPauseState(false);
+      }
+    }
+
+    // Attach click triggers to cards
+    cards.forEach(card => {
+      const visual = card.querySelector('.uy-visual');
+      const name = card.dataset.storyName || 'Student';
+      const videoSrc = card.dataset.storyVideo || '';
+
+      function handleClick(e) {
+        e.preventDefault();
+        openModal(name, videoSrc);
+      }
+
+      if (visual) {
+        visual.addEventListener('click', handleClick);
+        visual.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick(e);
+          }
         });
       }
-
-      function show(next) {
-        index = (next + steps.length) % steps.length;
-        const s = steps[index];
-        if (image) { image.src = s.img; image.alt = s.alt; }
-        if (title) title.textContent = s.t;
-        if (desc) desc.textContent = s.d;
-        if (kicker) kicker.textContent = `${String(index + 1).padStart(2, '0')} · ${s.k}`;
-        if (symbol) symbol.textContent = s.s;
-        if (count) count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(steps.length).padStart(2, '0')}`;
-        if (dots) {
-          [...dots.children].forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
-        }
-      }
-
-      function stop() {
-        if (timer) {
-          window.clearInterval(timer);
-          timer = null;
-        }
-      }
-
-      function start() {
-        if (reduceMotion || document.hidden || card.matches(':hover') || card.contains(document.activeElement)) return;
-        stop();
-        timer = window.setInterval(() => show(index + 1), 5600);
-      }
-
-      function restart() {
-        stop();
-        start();
-      }
-
-      const prevBtn = card.querySelector('[data-prev]');
-      const nextBtn = card.querySelector('[data-next]');
-      if (prevBtn) prevBtn.addEventListener('click', () => { show(index - 1); restart(); });
-      if (nextBtn) nextBtn.addEventListener('click', () => { show(index + 1); restart(); });
-
-      card.addEventListener('mouseenter', stop);
-      card.addEventListener('mouseleave', start);
-      card.addEventListener('focusin', stop);
-      card.addEventListener('focusout', e => {
-        if (!card.contains(e.relatedTarget)) start();
-      });
-
-      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
-      show(0);
-      start();
     });
+
+    // Close triggers
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+    if (outerClose) outerClose.addEventListener('click', closeModal);
+    if (innerClose) innerClose.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+
+    // Play/Pause controls
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlayPause();
+      });
+    }
+    if (centerPlay) {
+      centerPlay.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlayPause();
+      });
+    }
+    if (video) {
+      video.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlayPause();
+      });
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const pct = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100));
+        if (trackFill) trackFill.style.width = `${pct}%`;
+        if (trackKnob) trackKnob.style.left = `${pct}%`;
+        if (track) track.setAttribute('aria-valuenow', Math.round(pct));
+        if (timeText) {
+          timeText.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+        }
+      });
+      video.addEventListener('loadedmetadata', () => {
+        if (timeText) {
+          timeText.textContent = `0:00 / ${formatTime(video.duration)}`;
+        }
+      });
+      video.addEventListener('ended', () => {
+        updatePlayPauseState(false);
+        if (centerPlay) {
+          centerPlay.classList.add('is-visible');
+          const centerIcon = centerPlay.querySelector('i');
+          if (centerIcon) centerIcon.className = 'fa-solid fa-rotate-right';
+        }
+      });
+      video.addEventListener('play', () => updatePlayPauseState(true));
+      video.addEventListener('pause', () => updatePlayPauseState(false));
+    }
+
+    // Time scrubber
+    if (track) {
+      track.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const rect = track.getBoundingClientRect();
+        const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+        const pos = Math.min(Math.max(0, clientX - rect.left), rect.width);
+        const fraction = pos / rect.width;
+        if (video && video.duration) {
+          video.currentTime = fraction * video.duration;
+        }
+      });
+    }
+
+    // Mute toggle
+    if (muteBtn && video) {
+      muteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        const icon = muteBtn.querySelector('i');
+        if (icon) {
+          icon.className = video.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+        }
+      });
+    }
+  }
+
+  // Alias
+  function initTestimonialsStories() {
+    initStudentJourneyReelModal();
   }
 
   /* =====================================================
@@ -1177,6 +1323,23 @@
     }, { passive: true });
   }
 
+  function initFooterLegalToggle() {
+    const btn = document.getElementById('footerSeeMoreBtn');
+    const disclaimer = document.getElementById('footerLegalDisclaimer');
+    if (!btn || !disclaimer) return;
+
+    const label = btn.querySelector('.footer-seemore-label');
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const nextState = !isExpanded;
+      btn.setAttribute('aria-expanded', String(nextState));
+      disclaimer.hidden = !nextState;
+      if (label) {
+        label.textContent = nextState ? '( see less )' : '( see more )';
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initWizardController();
     initBottomEnquiry();
@@ -1185,6 +1348,7 @@
     initTestimonialsStories();
     initHeroDialogue();
     initScrollDirectionBars();
+    initFooterLegalToggle();
   });
 
 })();

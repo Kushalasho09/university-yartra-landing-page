@@ -59,16 +59,31 @@
               <!-- Bubble for Person 3 (Left, Boy with glasses & headphones) -->
               <div class="chat-bubble bubble-speaker-3" id="bubbleSpeaker3" data-speaker="3">
                 <span class="chat-bubble-text" id="bubbleText3">Start online in India.</span>
+                <svg class="chat-bubble-tail" viewBox="0 0 24 15" aria-hidden="true">
+                  <path class="tail-shadow" d="M 6.5,2.5 L 8.5,13.5 L 19.5,2.5 Z" />
+                  <path class="tail-fill" d="M 4,-1 L 6,11 L 17,-1 Z" />
+                  <path class="tail-stroke" d="M 4,1 L 6,11 L 17,1" />
+                </svg>
               </div>
 
               <!-- Bubble for Person 1 (Middle, Girl in purple sweater) -->
               <div class="chat-bubble bubble-speaker-1 is-active" id="bubbleSpeaker1" data-speaker="1">
                 <span class="chat-bubble-text" id="bubbleText1">Fast Track abroad?</span>
+                <svg class="chat-bubble-tail" viewBox="0 0 24 15" aria-hidden="true">
+                  <path class="tail-shadow" d="M 5.5,2.5 L 13.5,13.5 L 21.5,2.5 Z" />
+                  <path class="tail-fill" d="M 3,-1 L 11,11 L 19,-1 Z" />
+                  <path class="tail-stroke" d="M 3,1 L 11,11 L 19,1" />
+                </svg>
               </div>
 
               <!-- Bubble for Person 2 (Right, Boy in green jacket) -->
               <div class="chat-bubble bubble-speaker-2" id="bubbleSpeaker2" data-speaker="2">
                 <span class="chat-bubble-text" id="bubbleText2">How does it work?</span>
+                <svg class="chat-bubble-tail" viewBox="0 0 24 15" aria-hidden="true">
+                  <path class="tail-shadow" d="M 7.5,2.5 L 18.5,13.5 L 20.5,2.5 Z" />
+                  <path class="tail-fill" d="M 5,-1 L 16,11 L 18,-1 Z" />
+                  <path class="tail-stroke" d="M 5,1 L 16,11 L 18,1" />
+                </svg>
               </div>
             </div>
 
@@ -269,14 +284,12 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
                     <strong style="font-size:1.06rem;">Fast Track Pathway</strong>
                     <span class="badge-mini"
                       style="color:#0A1230 !important;background:#C8FF3E !important;font-weight:800 !important;">⚡ SAVE
-                      UP TO ₹38+ LAKHS</span>
+                      UP TO 40%</span>
                   </div>
-                  <span>Start Year 1 online in India, complete remaining degree at partner university abroad. Replaces 1
-                    full abroad year tuition &amp; living expenses.</span>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="pathway" data-v="direct">
@@ -297,8 +310,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong style="font-size:1.06rem;margin-bottom:4px;display:block;">Regular Admission</strong>
-                  <span>Apply directly and study 100% on-campus overseas from semester one.</span>
+                  <strong style="font-size:1.06rem;">Regular Admission</strong>
                 </div>
               </button>
             </div>
@@ -327,8 +339,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong>Bachelor's Degree</strong>
-                  <span>Undergraduate programmes after 12th standard (3–4 years)</span>
+                  <strong style="font-size:1.06rem;">Bachelor's Degree</strong>
                 </div>
               </button>
               <button class="wiz-opt on" type="button" data-k="level" data-v="Master's">
@@ -348,8 +359,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong>Master's Degree</strong>
-                  <span>Postgraduate programmes for university graduates (1–2 years)</span>
+                  <strong style="font-size:1.06rem;">Master's Degree</strong>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="level" data-v="MBA">
@@ -369,8 +379,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong>Global MBA</strong>
-                  <span>Business management &amp; executive programmes (1–2 years)</span>
+                  <strong style="font-size:1.06rem;">Global MBA</strong>
                 </div>
               </button>
             </div>
@@ -397,7 +406,6 @@
                   </svg>
                 </span>
                 <span class="c-name">Canada</span>
-                <span class="c-sub">PR &amp; Work Route</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="Germany">
                 <span class="flag flag-badge">
@@ -408,7 +416,6 @@
                   </svg>
                 </span>
                 <span class="c-name">Germany</span>
-                <span class="c-sub">Low Tuition &amp; ROI</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="United Kingdom">
                 <span class="flag flag-badge">
@@ -421,7 +428,6 @@
                   </svg>
                 </span>
                 <span class="c-name">United Kingdom</span>
-                <span class="c-sub">1-Year Master's</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="Australia">
                 <span class="flag flag-badge">
@@ -440,7 +446,6 @@
                   </svg>
                 </span>
                 <span class="c-name">Australia</span>
-                <span class="c-sub">Top Universities</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="USA">
                 <span class="flag flag-badge">
@@ -456,7 +461,6 @@
                   </svg>
                 </span>
                 <span class="c-name">United States</span>
-                <span class="c-sub">Global Campuses</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="France">
                 <span class="flag flag-badge">
@@ -467,7 +471,6 @@
                   </svg>
                 </span>
                 <span class="c-name">France</span>
-                <span class="c-sub">Affordable Degrees</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="Finland">
                 <span class="flag flag-badge">
@@ -478,7 +481,6 @@
                   </svg>
                 </span>
                 <span class="c-name">Finland</span>
-                <span class="c-sub">Innovation &amp; Quality</span>
               </button>
               <button class="wiz-opt" type="button" data-k="country" data-v="Other">
                 <span class="flag flag-badge">
@@ -491,7 +493,6 @@
                   </svg>
                 </span>
                 <span class="c-name">Other</span>
-                <span class="c-sub">Europe, Asia &amp; More</span>
               </button>
             </div>
           </div>
@@ -519,13 +520,12 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
                     <strong style="font-size:1.06rem;">Immediate Start</strong>
                     <span class="badge-mini"
                       style="color:#0A1230 !important;background:#C8FF3E !important;font-weight:800 !important;">⚡
                       FASTEST</span>
                   </div>
-                  <span>Start Fast Track modules online from India within weeks with zero visa wait time.</span>
                 </div>
               </button>
               <button class="wiz-opt on" type="button" data-k="timeline" data-v="fall-2027">
@@ -544,14 +544,12 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
                     <strong style="font-size:1.06rem;">Fall 2027 (Aug – Sep – Oct)</strong>
                     <span class="badge-mini"
                       style="color:#fff !important;background:#1856F3 !important;font-weight:800 !important;">MAIN
                       INTAKE</span>
                   </div>
-                  <span>Primary global intake with maximum university seats and scholarship eligibility (~8–10 months
-                    prep).</span>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="timeline" data-v="spring-2028">
@@ -566,9 +564,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong style="font-size:1.06rem;margin-bottom:4px;display:block;">Spring 2028 (Jan – Mar)</strong>
-                  <span>Secondary international intake with streamlined visa processing and moderate class sizes (~12–14
-                    months prep).</span>
+                  <strong style="font-size:1.06rem;">Spring 2028 (Jan – Mar)</strong>
                 </div>
               </button>
               <button class="wiz-opt" type="button" data-k="timeline" data-v="later">
@@ -580,8 +576,7 @@
                   </svg>
                 </div>
                 <div class="opt-body">
-                  <strong style="font-size:1.06rem;margin-bottom:4px;display:block;">2028 or Later (Long-Term)</strong>
-                  <span>Exploring study options, tests preparation (IELTS/GRE), and early financial budgeting.</span>
+                  <strong style="font-size:1.06rem;">2028 or Later (Long-Term)</strong>
                 </div>
               </button>
             </div>
@@ -605,9 +600,6 @@
                   </span>
                   <span id="rTitleText">Canada · Master's Programme</span>
                 </h3>
-                <button type="button" id="wizEditChoicesTopBtn" class="wiz-edit-top-btn" title="Edit your choices">
-                  <i class="fa-solid fa-arrow-left"></i> <span>Edit Choices</span>
-                </button>
               </div>
 
               <!-- SPECIAL CALLOUT WHEN "OTHER" COUNTRY IS SELECTED (From Official Doc) -->
@@ -622,11 +614,10 @@
                 <p style="font-size:0.84rem;color:var(--lime);line-height:1.45;margin:0 0 14px;font-weight:700;">
                   Speak to one of our counselors to let us know which country interests you, and we will give you a clearer idea of what to expect.
                 </p>
-                <a id="otherCountryWaBtn" href="https://wa.me/919217368750?text=Hi%20University%20Yatra,%20I%20am%20interested%20in%20studying%20in%20another%20country.%20Please%20connect%20with%20me%20to%20give%20me%20a%20clearer%20idea%20of%20what%20to%20expect."
-                  target="_blank" rel="noopener" class="btn btn-lime btn-block" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:800;font-size:0.95rem;padding:12px 18px;border-radius:10px;box-shadow:3px 3px 0 #0A1230;">
-                  <i class="fa-brands fa-whatsapp" style="font-size:1.15rem;"></i>
-                  <span>Chat with Us on WhatsApp</span>
-                </a>
+                <button type="button" id="otherCountryPdfBtn" class="btn btn-lime btn-block">
+                  <i class="fa-solid fa-file-pdf"></i>
+                  <span>Download Free Global Study Guide</span>
+                </button>
               </div>
 
               <!-- Locked Report Teaser Card (Reference Image 1) -->
@@ -1045,20 +1036,21 @@
     <!-- SECTION 7 — TESTIMONIALS (REAL STUDENT JOURNEYS) -->
     <section class="section" id="testimonials" aria-labelledby="uy-testimonials-heading">
       <div class="uy-wrap">
-        <header class="uy-heading">
-          <span class="uy-badge">★ VERIFIED GUIDANCE</span>
+        <div class="uy-heading">
+          <span class="uy-badge">★ STUDENT SUCCESS STORIES</span>
           <h2 id="uy-testimonials-heading">Verified Guidance<br><span class="uy-blue-text">Real Student Journeys</span></h2>
-        </header>
+        </div>
         <div class="uy-grid">
-          <article class="uy-card" data-story="unnati" aria-label="Unnati Parekh's student journey">
+          <!-- Unnati Parekh Card -->
+          <article class="uy-card" data-story="unnati" data-story-name="Unnati" data-story-video="assets/videos/unnati-journey.mp4" aria-label="Unnati Parekh's student journey">
             <div class="uy-story">
               <div class="uy-story-top">
                 <span class="uy-story-label">Student journey · Canada</span>
               </div>
-              <div class="uy-visual" data-visual>
-                <img data-image src="assets/images/consultation-unnati.jpg"
-                  alt="Unnati Parekh online counselling consultation with University Yatra" />
-                <div class="uy-play-btn" aria-label="Play Video" role="button">
+              <div class="uy-visual" role="button" tabindex="0" aria-label="Play Unnati's Story Video">
+                <img src="assets/images/consultation-unnati.jpg"
+                  alt="Unnati Parekh online counselling consultation with University Yatra" class="uy-meet-img" />
+                <div class="uy-play-btn" aria-hidden="true">
                   <i class="fa-solid fa-play"></i>
                 </div>
               </div>
@@ -1070,19 +1062,18 @@
               <div class="uy-person"><strong>Unnati Parekh</strong><span>Master's in Instrumental Chemical
                   Analysis<br>Trent University, Ontario, Canada</span></div>
             </div>
-            <div class="uy-cta-row"><a class="uy-cta" href="https://wa.me/919217368750" target="_blank"
-                rel="noopener">Talk Through Your Study Options</a></div>
           </article>
 
-          <article class="uy-card" data-story="tauheed" aria-label="Tauheed Khan's student journey">
+          <!-- Tauheed Khan Card -->
+          <article class="uy-card" data-story="tauheed" data-story-name="Tauheed" data-story-video="assets/videos/tauheed-journey.mp4" aria-label="Tauheed Khan's student journey">
             <div class="uy-story">
               <div class="uy-story-top">
                 <span class="uy-story-label">Student journey · Canada</span>
               </div>
-              <div class="uy-visual" data-visual>
-                <img data-image src="assets/images/consultation-tauheed.jpg"
-                  alt="Tauheed Khan online academic counselling consultation with University Yatra" />
-                <div class="uy-play-btn" aria-label="Play Video" role="button">
+              <div class="uy-visual" role="button" tabindex="0" aria-label="Play Tauheed's Story Video">
+                <img src="assets/images/consultation-tauheed.jpg"
+                  alt="Tauheed Khan online academic counselling consultation with University Yatra" class="uy-meet-img" />
+                <div class="uy-play-btn" aria-hidden="true">
                   <i class="fa-solid fa-play"></i>
                 </div>
               </div>
@@ -1094,9 +1085,63 @@
               <div class="uy-person"><strong>Tauheed Khan</strong><span>Master's in Global Business Economy<br>Algoma
                   University, Sault Ste. Marie, Ontario, Canada</span></div>
             </div>
-            <div class="uy-cta-row"><a class="uy-cta" href="https://wa.me/919217368750" target="_blank"
-                rel="noopener">Discuss Your Study Options</a></div>
           </article>
+        </div>
+      </div>
+
+      <!-- REEL-STYLE STUDENT JOURNEY MODAL OVERLAY -->
+      <div class="uy-reel-modal" id="uyReelModal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="uy-reel-backdrop" id="uyReelBackdrop"></div>
+        <div class="uy-reel-dialog">
+          <!-- Smartphone / Reel Container (9:16 Aspect Ratio) -->
+          <div class="uy-reel-phone">
+            <!-- Top Bar Inside Reel (Single Clean Close Button + Student Tag) -->
+            <div class="uy-video-top-bar">
+              <span class="uy-video-tag" id="uyReelTag"><i class="fa-solid fa-circle-play"></i> Unnati's Journey</span>
+              <button type="button" class="uy-clay-btn uy-btn-close" id="uyReelCloseBtn" aria-label="Close Video">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <!-- 1. Animated Typography Intro -->
+            <div class="uy-reel-intro" id="uyReelIntro">
+              <div class="uy-reel-intro-content">
+                <span class="uy-reel-badge">★ REAL STUDENT JOURNEY</span>
+                <h3 class="uy-reel-intro-title" id="uyReelIntroTitle">Unnati's Story<br><span>Begins Like This...</span></h3>
+                <div class="uy-reel-loader">
+                  <div class="uy-reel-loader-bar" id="uyReelLoaderBar"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Video Player -->
+            <div class="uy-reel-player" id="uyReelPlayer">
+              <video id="uyReelVideo" class="uy-reel-video" playsinline preload="auto">
+                <source src="assets/videos/unnati-journey.mp4" type="video/mp4">
+              </video>
+
+              <!-- Center Tap Play/Pause Button -->
+              <button type="button" class="uy-center-play" id="uyReelCenterPlay" aria-label="Play or Pause Video">
+                <i class="fa-solid fa-play"></i>
+              </button>
+
+              <!-- Bottom Clay Controls Bar -->
+              <div class="uy-video-controls">
+                <button type="button" class="uy-clay-btn uy-btn-playpause" id="uyReelPlayPause" aria-label="Play or Pause">
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <div class="uy-time-track" id="uyReelTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                  <div class="uy-track-bg"></div>
+                  <div class="uy-track-fill" id="uyReelTrackFill"></div>
+                  <div class="uy-track-knob" id="uyReelTrackKnob"></div>
+                </div>
+                <span class="uy-time-text" id="uyReelTime">0:00 / 0:27</span>
+                <button type="button" class="uy-clay-btn uy-btn-mute" id="uyReelMute" aria-label="Mute or Unmute">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1165,20 +1210,33 @@
         <div class="enquiry-wrap" id="enquiry">
           <!-- ENQUIRY FORM (Swapped to Left — Blue Card with White Button) -->
           <div class="enquiry-card">
-            <h3>Let's Find the Right Study Abroad Option for You</h3>
+            <h3>Their Journey Started Here. Yours Can Too</h3>
 
             <form class="form" id="enquiryForm">
               <input class="fi" name="name" id="eq_name" placeholder="Full Name" required autocomplete="name" />
               <div class="ph">
-                <span>+91</span>
-                <input class="fi" name="mobile" id="eq_mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}"
-                  maxlength="10" placeholder="WhatsApp Number" required autocomplete="tel" />
+                <select class="ph-select" id="eq_country_code" name="country_code" aria-label="Select Country">
+                  <option value="+91" selected>🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+1">🇨🇦 +1</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+358">🇫🇮 +358</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+64">🇳🇿 +64</option>
+                  <option value="+353">🇮🇪 +353</option>
+                </select>
+                <input class="fi" name="mobile" id="eq_mobile" type="tel" inputmode="numeric" pattern="[0-9]{7,15}"
+                  maxlength="15" placeholder="WhatsApp Number" required autocomplete="tel" />
               </div>
               <input class="fi" name="email" id="eq_email" type="email" placeholder="Email Address" required
                 autocomplete="email" />
 
-              <button class="btn-cta-img-wrap" type="submit" id="enquirySubmitBtn" aria-label="Find My Study Options">
-                <img src="assets/images/cta-button-find-options-white.png" alt="Find My Study Options" class="btn-cta-img" width="967" height="268" />
+              <button class="btn-cta-img-wrap" type="submit" id="enquirySubmitBtn" aria-label="FREE 1:1 Video Counselling">
+                <img src="assets/images/cta-button-video-counselling-cropped.png?v=3" alt="FREE 1:1 Video Counselling" class="btn-cta-img" width="993" height="165" />
               </button>
             </form>
 
@@ -1193,8 +1251,6 @@
             <img src="assets/images/clay-consultation-globe.png" alt="3D Polymer Clay Globe with Orbiting Airplane"
               class="cta-box-top-img" />
             <h2>Not Sure Which University or Country Is Right for You?</h2>
-            <p>Tell us about your study plans. Our counsellors will help you understand your options based on your
-              academic background, budget and career goals.</p>
             <ul class="cta-perks">
               <li><i class="fa-solid fa-circle-check"></i> Know which universities match your academic profile</li>
               <li><i class="fa-solid fa-circle-check"></i> Understand course options, tuition fees and eligibility</li>
@@ -1203,11 +1259,6 @@
             </ul>
             <div class="cta-box-actions">
               <a class="btn btn-lime" href="#calculator">Get Free Study Guidance</a>
-              <a class="btn btn-wa"
-                href="https://wa.me/919217368750?text=Hi%20University%20Yatra%2C%20I%20need%20guidance%20for%20studying%20abroad."
-                target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> Chat with a Counsellor
-              </a>
             </div>
           </div>
         </div>
@@ -1249,20 +1300,6 @@
   <!-- INTERACTIVE STICKER SLAP FOOTER -->
   <footer class="ssf" id="ssfFooter"
     style="--ssf-paper:#FFFDF5; --ssf-panel:#1856F3; --ssf-ink:#0A1230; --ssf-cream:#FFFFFF; --ssf-accent:#C8FF3E; --ssf-sans:'Plus Jakarta Sans', system-ui, sans-serif; --ssf-wmh:45svh; --ssf-ar:4.29;">
-    <!-- Top Bar -->
-    <div class="ssf-top">
-      <a class="ssf-logo-wrap logo-capsule" href="#top" aria-label="University Yatra Home" id="footerLogo">
-        <img src="assets/logo-shield.png" alt="University Yatra Shield" class="logo-capsule-icon">
-        <span class="logo-capsule-text">university <span>yatra</span></span>
-      </a>
-
-      <a class="ssf-chat" href="https://wa.me/919217368750" target="_blank" rel="noopener"
-        aria-label="Chat with Counsellor on WhatsApp">
-        <i class="fa-brands fa-whatsapp" style="font-size:1.15rem;"></i>
-        <span>Chat on WhatsApp</span>
-      </a>
-    </div>
-
     <!-- Main Neo-Brutalist Panel -->
     <div class="ssf-panel">
       <!-- 3 Service Columns -->
@@ -1286,7 +1323,7 @@
             <li class="ssf-line" style="--i: 2;"><a href="#destinations">United Kingdom</a></li>
             <li class="ssf-line" style="--i: 3;"><a href="#destinations">Australia &amp; United States</a></li>
           </ul>
-          <a class="ssf-map" href="#destinations">
+          <a class="ssf-map" href="https://wa.me/919217368750?text=Hi%21%20I%27m%20planning%20to%20study%20abroad%20and%20would%20like%20to%20explore%20different%20countries%2C%20courses%20and%20admission%20options.%20Can%20you%20guide%20me%3F" target="_blank" rel="noopener">
             Explore All Countries
             <svg viewBox="0 0 88 8" preserveAspectRatio="none" aria-hidden="true" focusable="false">
               <path d="M1 5C7 1 11 1 15 4S24 8 29 4S38 0 43 4S52 8 57 4S66 1 71 4S80 7 87 3" data-draw="" />
@@ -1297,20 +1334,6 @@
         <!-- Column 3: Study Support & Contact -->
         <div class="ssf-col" style="--c: 2;">
           <h3 class="ssf-tag">Study Support</h3>
-          <ul class="ssf-big">
-            <li class="ssf-line" style="--i: 0;">
-              <button type="button" class="ssf-copy" title="Click to copy email address">
-                <span class="ssf-addr">info@universityyatra.com</span>
-                <span class="ssf-done" aria-hidden="true">copied, talk soon!</span>
-              </button>
-            </li>
-            <li class="ssf-line" style="--i: 1;">
-              <a href="https://wa.me/919217368750" target="_blank" rel="noopener">
-                +91 92173 68750 <span class="ssf-ast">*</span>
-              </a>
-            </li>
-          </ul>
-          <p class="ssf-note">*Free 1-on-1 profile assessment and counselling via Google Meet &amp; WhatsApp.</p>
           <ul class="ssf-socials">
             <li style="--i: 0;"><a class="ssf-soc" href="https://wa.me/919217368750" target="_blank" rel="noopener"
                 aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></li>
@@ -1363,21 +1386,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Giant Marker Wordmark Button -->
-          <button type="button" class="ssf-wm-btn" aria-label="Write University Yatra again">
-            <div class="ssf-wm-wrap">
-              <span class="ssf-wm-univ">university</span>
-              <svg class="ssf-wm" viewBox="-3.65 -17.25 68.82 29.10" aria-hidden="true" focusable="false">
-                <g transform="skewX(-9)">
-                  <path
-                    d="M0.0 -1C1.46 -1.6 1.95 -6 2.2 -9.6L2.2 -3.6C2.2 -1 3.66 0 5.61 0C7.56 0 9.03 -1.4 9.27 -4L9.27 -9.8L9.27 4.4C9.27 9 6.83 9.6 5.12 9.6C2.44 9.6 1.71 7.6 3.42 6C5.61 4 9.03 1.6 11.71 -1L12.71 -1C14.42 -1.4 14.42 -9.6 17.96 -10C15.76 -10 13.93 -7.8 13.93 -5C13.93 -2.2 15.76 0 17.96 0C20.15 0 21.98 -2.2 21.98 -5L22.23 -10L22.23 -3C22.23 -0.8 23.45 -1 25.16 -1L26.16 -1C27.38 -1.4 28.84 -8 29.08 -15L29.08 -3.2C29.08 -0.8 31.04 -1 34.21 -1L35.21 -1C36.67 -1.6 37.16 -6 37.4 -9.6L37.4 -1L37.4 -5.6C38.38 -8.6 40.33 -10 42.28 -10C43.5 -10 44.48 -9.6 45.21 -8.8M46.7 -1C48.41 -1.4 48.41 -9.6 51.95 -10C49.75 -10 47.92 -7.8 47.92 -5C47.92 -2.2 49.75 0 51.95 0C54.14 0 55.97 -2.2 55.97 -5L56.22 -10L56.22 -3C56.22 -0.8 57.44 -1 59.14 -1"
-                    data-draw="" style="--dur: 2.1s; --at: 1.05s;" />
-                  <path d="M25.18 -9.6L33.72 -9.6" data-draw="" style="--dur: 0.28s; --at: 3.25s;" />
-                </g>
-              </svg>
-            </div>
-          </button>
 
           <!-- Sticker 0: FREE GUIDE Starburst -->
           <div class="ssf-st" data-home-x="12" data-home-y="56"
@@ -1536,9 +1544,16 @@
     </div>
 
     <!-- Frame Copyright Note -->
-    <div style="text-align:center; padding: 18px 12px 10px; font-size: 0.8rem; color: #556987; line-height: 1.5;">
-      &copy; <span id="yearVal">2026</span> Future Yatra Private Limited. University Yatra is a brand of Future Yatra
-      Private Limited. All information is for educational guidance only.
+    <div class="footer-copyright-wrap">
+      <div class="footer-copyright-line">
+        &copy; <span id="yearVal">2026</span> University Yatra is a brand of Future Yatra Private Limited. All rights reserved.
+        <button type="button" id="footerSeeMoreBtn" class="footer-seemore-btn" aria-expanded="false" aria-controls="footerLegalDisclaimer">
+          <span class="footer-seemore-arrow" aria-hidden="true">⌄</span> <span class="footer-seemore-label">( see more )</span>
+        </button>
+      </div>
+      <div id="footerLegalDisclaimer" class="footer-legal-disclaimer" hidden>
+        Information on this website is for general educational guidance only. Admission, scholarships, employment and visa decisions are subject to the relevant universities, institutions and government authorities. Outcomes are not guaranteed.
+      </div>
     </div>
   </footer>
 
