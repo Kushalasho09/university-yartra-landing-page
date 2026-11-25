@@ -273,7 +273,13 @@
       quickSuccess.style.setProperty('display', 'none', 'important');
     }
     if (discEl) {
-      discEl.style.display = isOther ? 'none' : 'block';
+      discEl.style.display = isOther ? 'none' : 'flex';
+    }
+    const scholarshipNoteEl = $('calcScholarshipNote');
+    if (scholarshipNoteEl) {
+      scholarshipNoteEl.textContent = (S.pathway === 'fast-track')
+        ? 'Save up to 40% with Fast Track.'
+        : 'You may get up to 30% additional scholarship / tuition waiver.';
     }
 
     if (flagEl) flagEl.innerHTML = FLAG_SVGS[S.country] || FLAG_SVGS['Canada'];

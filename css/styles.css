@@ -600,6 +600,9 @@ body.scroll-down body > header {
 .bubble-speaker-3 .chat-bubble-tail {
   left: 24px;
 }
+.bubble-speaker-3 .chat-bubble-tail .tail-stroke {
+  stroke: var(--lime);
+}
 .bubble-speaker-1 .chat-bubble-tail {
   left: 50%;
   transform: translateX(-50%);
@@ -612,6 +615,7 @@ body.scroll-down body > header {
 .bubble-speaker-3 {
   left: clamp(6px, 3.2vw, 16px);
   right: auto;
+  border-color: var(--lime);
   transform: scale(0.88) translateY(4px);
 }
 .bubble-speaker-3.is-active {
@@ -676,7 +680,7 @@ body.scroll-down body > header {
 .bubble-speaker-3.is-brand-highlight {
   background: var(--blue) !important;
   color: #FFFFFF !important;
-  border-color: var(--ink) !important;
+  border-color: var(--lime) !important;
   box-shadow: 3px 3px 0 var(--ink) !important;
   font-weight: 800 !important;
 }
@@ -1956,7 +1960,7 @@ select.fi {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
-  max-width: 1100px;
+  max-width: 820px;
   margin: 0 auto;
   align-items: stretch;
 }
@@ -1999,11 +2003,11 @@ select.fi {
   display: none !important;
 }
 
-/* Normal Wide Google Meet Card Visual (Full Uncropped 1024x480) */
+/* Vertical Google Meet Card Visual (720x1280, 9:16) */
 #testimonials .uy-visual, #uy-testimonials .uy-visual {
   position: relative;
   width: 100%;
-  aspect-ratio: 1024 / 480;
+  aspect-ratio: 9 / 16;
   border-radius: 14px;
   overflow: hidden;
   border: 2.5px solid var(--uy-ink);
@@ -2017,7 +2021,7 @@ select.fi {
 .uy-meet-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   pointer-events: none;
 }
@@ -2538,7 +2542,7 @@ body.uy-modal-open {
 @media (max-width: 820px) {
   #testimonials .uy-grid, #uy-testimonials .uy-grid {
     grid-template-columns: 1fr;
-    max-width: 480px;
+    max-width: 380px;
     margin: 0 auto;
     gap: 20px;
   }
@@ -2582,7 +2586,7 @@ body.uy-modal-open {
   }
   #testimonials .uy-visual, #uy-testimonials .uy-visual {
     width: 100%;
-    aspect-ratio: 1024 / 480;
+    aspect-ratio: 9 / 16;
     min-height: 0;
     max-height: none;
     border-radius: 12px;
